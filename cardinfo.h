@@ -27,15 +27,17 @@ public:
     //  * modelCard (QString)
     //  * capacityCard (int)
     //  * driverVersion (int)
-    // Ця функція викликається лише один
-    bool GetMainDataFromVideoCard();
+    // NumberOfAskedVideoCard -> номер відеокарти
+    // Ця функція викликається лише один раз
+    bool GetMainDataFromVideoCard(int NumberOfAskedVideoCard);
 
     // Постійне отримання даних по відеокарті:
     //  * loadCard (int)
     //  * tempCard (int)
     //  * capacityUsedCard (int)
+    // NumberOfAskedVideoCard -> номер відеокарти
     // Викликається постійно для оновлення актуальності інформації
-    bool GetCurrentDataFromVideoCard();
+    bool GetCurrentDataFromVideoCard(int NumberOfAskedVideoCard);
 
 
 private slots:

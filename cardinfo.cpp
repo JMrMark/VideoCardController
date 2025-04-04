@@ -1,5 +1,6 @@
 #include "cardinfo.h"
 #include "ui_cardinfo.h"
+#include <QProcess>
 
 cardinfo::cardinfo(QWidget *parent)
     : QMainWindow(parent)
@@ -24,32 +25,71 @@ bool cardinfo::AddVideoCardCounter(int number){
 }
 
 bool cardinfo::GetNumberOfVedioCards(){
+    QProcess process;
+    process.start("nvidia-smi --query-gpu=name --format=csv,noheader");
+    process.waitForFinished();
+    QString output = process.readAllStandardOutput();
 
-    // Отримуємо кількість відеокарт та записуємо у result ***
+    QStringList gpus = output.split('\n', Qt::SkipEmptyParts);
+    int result = gpus.count();
 
-    int result = 0;
-    if (AddVideoCardCounter(result)){
+    if (AddVideoCardCounter(result)) {
         return true;
     }
     qDebug("More than 3 video cards");
     return false;
 }
 
-bool cardinfo::GetMainDataFromVideoCard(){
+bool cardinfo::GetMainDataFromVideoCard(int NumberOfAskedVideoCard){
+    if (NumberOfAskedVideoCard < 0 || NumberOfAskedVideoCard >= CounterOfVideoCards) {
+        qWarning("Invalid GPU index");
+        return false;
+    }
 
-    // Отримуємо інформацію по відеокарті на записуємо їх у modelCard(QString), capacityCard (int) та driverVersion (int)
+    QProcess process;
+    QString command = QString("nvidia-smi -i %1 --query-gpu=name,memory.total,driver_version --format=csv,noheader,nounits")
+                          .arg(NumberOfAskedVideoCard);
+    process.start(command);
+    process.waitForFinished();
+    QString output = process.readAllStandardOutput();
+
+    QStringList values = output.trimmed().split(", ");
+    if (values.size() < 3) return false;
+
+    modelCard = values[0];
+    capacityCard = values[1].toInt();
+    driverVersion = values[2].toInt();
+
     return true;
 }
 
-bool cardinfo::GetCurrentDataFromVideoCard(){
+bool cardinfo::GetCurrentDataFromVideoCard(int NumberOfAskedVideoCard){
+    if (NumberOfAskedVideoCard < 0 || NumberOfAskedVideoCard >= CounterOfVideoCards) {
+        qWarning("Invalid GPU index");
+        return false;
+    }
 
-    // Отримуємо інформацію по відеокарті на записуємо їх у loadCard(int), tempCard(int) та capacityUsedCard(int)
+    QProcess process;
+    QString command = QString("nvidia-smi -i %1 --query-gpu=utilization.gpu,temperature.gpu,memory.used --format=csv,noheader,nounits")
+                          .arg(NumberOfAskedVideoCard);
+    process.start(command);
+    process.waitForFinished();
+    QString output = process.readAllStandardOutput();
+
+    QStringList values = output.trimmed().split(", ");
+    if (values.size() < 3) return false;
+
+    loadCard = values[0].toInt();
+    tempCard = values[1].toInt();
+    capacityUsedCard = values[2].toInt();
+
     return true;
 }
 
 void cardinfo::on_InfoCard1_b_clicked()
 {
     // Перша відеокарта
+
 }
 
 

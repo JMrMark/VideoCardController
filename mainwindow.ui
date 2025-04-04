@@ -6,64 +6,93 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>846</width>
-    <height>628</height>
+    <width>795</width>
+    <height>673</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">
+button {
+  --b: 3px;   /* border thickness */
+  --s: .45em; /* size of the corner */
+  --color: #373B44;
+  
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  color: var(--color);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .6em;
+  font-size: 16px;
+
+  border: 0;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button:hover,
+button:focus-visible{
+  --_p: 0px;
+  outline-color: var(--color);
+  outline-offset: .05em;
+}
+
+button:active {
+  background: var(--color);
+  color: #fff;
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_8">
-    <item row="7" column="5">
-     <layout class="QVBoxLayout" name="verticalLayout_3"/>
+   <layout class="QGridLayout" name="gridLayout_8" rowstretch="1,1,1,1" columnstretch="1,1,1,1">
+    <item row="1" column="3">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
     </item>
-    <item row="7" column="6">
-     <layout class="QVBoxLayout" name="verticalLayout_4"/>
-    </item>
-    <item row="2" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout_6"/>
-    </item>
-    <item row="7" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout"/>
-    </item>
-    <item row="5" column="0">
-     <layout class="QGridLayout" name="gridLayout_5"/>
-    </item>
-    <item row="7" column="3">
-     <layout class="QVBoxLayout" name="verticalLayout"/>
-    </item>
-    <item row="4" column="0">
-     <layout class="QGridLayout" name="gridLayout"/>
-    </item>
-    <item row="7" column="0">
-     <layout class="QGridLayout" name="gridLayout_7"/>
-    </item>
-    <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout_8"/>
-    </item>
-    <item row="7" column="1">
-     <layout class="QGridLayout" name="gridLayout_9"/>
-    </item>
-    <item row="3" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout_5"/>
-    </item>
-    <item row="6" column="0">
-     <layout class="QGridLayout" name="gridLayout_6"/>
-    </item>
-    <item row="7" column="4">
-     <layout class="QVBoxLayout" name="verticalLayout_2"/>
-    </item>
-    <item row="1" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout_7"/>
-    </item>
-    <item row="7" column="7">
-     <layout class="QVBoxLayout" name="verticalLayout_9"/>
-    </item>
-    <item row="2" column="3" rowspan="4" colspan="2">
+    <item row="1" column="1" rowspan="2" colspan="2">
      <layout class="QVBoxLayout" name="verticalLayout_10">
       <item>
        <widget class="QPushButton" name="infoCard_b">
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    border: 3px solid transparent;
+    padding: 8px 14px;
+    font-size: 16px;
+    color: #373B44;
+    background-color: transparent;
+    background-image: conical-gradient(from 90deg, transparent 90deg, #373B44 90deg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-origin: content;
+    outline: none;
+}
+
+QPushButton:hover, QPushButton:focus {
+    border-color: #373B44;
+    outline: none;
+}
+
+QPushButton:pressed {
+    background-color: #373B44;
+    color: white;
+}</string>
+        </property>
         <property name="text">
          <string>Інформація про відеокарту</string>
         </property>
@@ -99,6 +128,45 @@
       </item>
      </layout>
     </item>
+    <item row="1" column="0">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="1">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="3" column="1">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -106,7 +174,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>846</width>
+     <width>795</width>
      <height>22</height>
     </rect>
    </property>
