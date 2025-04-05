@@ -1,4 +1,4 @@
-C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Debug/VideoCardControl_autogen/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/mainwindow.h \
+C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Debug/VideoCardControl_autogen/EWIEGA46WW/moc_graphwindow.cpp: C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/graphwindow.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/QString \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/q20functional.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/q20iterator.h \
@@ -153,6 +153,4 @@ C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/build/Desk
   C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qtwidgetsexports.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qtwidgetsglobal.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qwidget.h \
-  C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/cardinfo.h \
-  C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/graphwindow.h \
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/videocardcollector.h

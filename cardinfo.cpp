@@ -1,5 +1,6 @@
 #include "cardinfo.h"
 #include "ui_cardinfo.h"
+#include "graphwindow.h"
 #include <QProcess>
 #include <QDebug>
 
@@ -16,24 +17,15 @@ cardinfo::cardinfo(QWidget *parent)
     PaintNotAvailableButtons();
 
     if (CounterOfVideoCards != -1){
-        ShowMainDataFromVideoCard(0);
-        ShowCurrentDataFromVideoCard(0);
+        CurrentVideoCard = 0;
+        ShowMainDataFromVideoCard(CurrentVideoCard);
+        ShowCurrentDataFromVideoCard(CurrentVideoCard);
     }
 }
 
 cardinfo::~cardinfo()
 {
     delete ui;
-}
-
-bool cardinfo::AddVideoCardCounter(int number){
-    int temp = number + CounterOfVideoCards;
-    qDebug() << "The number of videocards is (temp): " << temp;
-    if (temp > 3 || temp < 0){
-        return false;
-    }
-    CounterOfVideoCards = temp;
-    return true;
 }
 
 void cardinfo::PaintNotAvailableButtons() {
@@ -76,85 +68,6 @@ void cardinfo::PaintNotAvailableButtons() {
         ui->InfoCard2_b->setStyleSheet(redStyle);
         ui->InfoCard3_b->setStyleSheet(redStyle);
     }
-}
-
-bool cardinfo::GetNumberOfVedioCards() {
-    QProcess process;
-    QStringList arguments;
-    arguments << "--query-gpu=name"
-              << "--format=csv,noheader";
-
-    process.start("nvidia-smi", arguments);
-    process.waitForFinished();
-
-    QString output = process.readAllStandardOutput();
-    QStringList gpus = output.split('\n', Qt::SkipEmptyParts);
-
-    int result = gpus.count();
-    qDebug() << "The number of videocards is: " << result;
-
-    if (AddVideoCardCounter(result)) {
-        return true;
-    }
-
-    qDebug("More than 3 or less than 0 video cards");
-    return false;
-}
-
-bool cardinfo::GetMainDataFromVideoCard(int NumberOfAskedVideoCard){
-    if (NumberOfAskedVideoCard < 0 || NumberOfAskedVideoCard > CounterOfVideoCards) {
-        qWarning("Invalid GPU index");
-        return false;
-    }
-
-    QProcess process;
-    QStringList arguments;
-    arguments << "-i" << QString::number(NumberOfAskedVideoCard)
-              << "--query-gpu=name,memory.total,driver_version"
-              << "--format=csv,noheader,nounits";
-
-    process.start("nvidia-smi", arguments);
-    process.waitForFinished();
-
-    QString output = process.readAllStandardOutput();
-    qDebug() << "Result of main data: " << output;
-
-    QStringList values = output.trimmed().split(", ");
-    if (values.size() < 3) return false;
-
-    modelCard = values[0];
-    capacityCard = values[1].toInt();
-    driverVersion = values[2];
-
-    return true;
-}
-
-bool cardinfo::GetCurrentDataFromVideoCard(int NumberOfAskedVideoCard) {
-    if (NumberOfAskedVideoCard < 0 || NumberOfAskedVideoCard > CounterOfVideoCards) {
-        qWarning("Invalid GPU index");
-        return false;
-    }
-
-    QProcess process;
-    QStringList arguments;
-    arguments << "-i" << QString::number(NumberOfAskedVideoCard)
-              << "--query-gpu=utilization.gpu,temperature.gpu,memory.used"
-              << "--format=csv,noheader,nounits";
-
-    process.start("nvidia-smi", arguments);
-    process.waitForFinished();
-
-    QString output = process.readAllStandardOutput().trimmed();
-    qDebug() << "Current GPU data: " << output;
-
-    QStringList values = output.split(",", Qt::SkipEmptyParts);
-    if (values.size() < 3) return false;
-
-    loadCard = values[0].trimmed().toInt();
-    tempCard = values[1].trimmed().toInt();
-    capacityUsedCard = values[2].trimmed().toInt();
-
-    return true;
 }
 
 bool cardinfo::ShowMainDataFromVideoCard(int NumberOfAskedVideoCard){
@@ -204,9 +117,9 @@ void cardinfo::on_InfoCard1_b_clicked()
         qDebug() << "No such videoCard available";
     }
     else {
-        ShowMainDataFromVideoCard(0);
-
-        ShowCurrentDataFromVideoCard(0);
+        CurrentVideoCard = 0;
+        ShowMainDataFromVideoCard(CurrentVideoCard);
+        ShowCurrentDataFromVideoCard(CurrentVideoCard);
     }
 }
 
@@ -217,9 +130,9 @@ void cardinfo::on_InfoCard2_b_clicked()
         qDebug() << "No such videoCard available";
     }
     else {
-        ShowMainDataFromVideoCard(1);
-
-        ShowCurrentDataFromVideoCard(1);
+        CurrentVideoCard = 1;
+        ShowMainDataFromVideoCard(CurrentVideoCard);
+        ShowCurrentDataFromVideoCard(CurrentVideoCard);
     }
 }
 
@@ -230,9 +143,69 @@ void cardinfo::on_InfoCard3_b_clicked()
         qDebug() << "No such videoCard available";
     }
     else {
-        ShowMainDataFromVideoCard(2);
+        CurrentVideoCard = 2;
+        ShowMainDataFromVideoCard(CurrentVideoCard);
+        ShowCurrentDataFromVideoCard(CurrentVideoCard);
+    }
+}
 
-        ShowCurrentDataFromVideoCard(2);
+
+void cardinfo::on_loadButton_clicked()
+{
+    int gpuIndex = 0;
+
+    if (!graphWindows[gpuIndex]) {
+        graphWindows[gpuIndex] = new GraphWindow(CurrentVideoCard, 0);
+        graphWindows[gpuIndex]->setAttribute(Qt::WA_DeleteOnClose);
+
+        connect(graphWindows[gpuIndex], &GraphWindow::destroyed, this, [=]() {
+            graphWindows[gpuIndex] = nullptr;
+        });
+
+        graphWindows[gpuIndex]->show();
+    } else {
+        graphWindows[gpuIndex]->raise();
+        graphWindows[gpuIndex]->activateWindow();
+    }
+}
+
+
+void cardinfo::on_capacityButton_clicked()
+{
+    int gpuIndex = 1;
+
+    if (!graphWindows[gpuIndex]) {
+        graphWindows[gpuIndex] = new GraphWindow(CurrentVideoCard, 1);
+        graphWindows[gpuIndex]->setAttribute(Qt::WA_DeleteOnClose);
+
+        connect(graphWindows[gpuIndex], &GraphWindow::destroyed, this, [=]() {
+            graphWindows[gpuIndex] = nullptr;
+        });
+
+        graphWindows[gpuIndex]->show();
+    } else {
+        graphWindows[gpuIndex]->raise();
+        graphWindows[gpuIndex]->activateWindow();
+    }
+}
+
+
+void cardinfo::on_tempButton_clicked()
+{
+    int gpuIndex = 2;
+
+    if (!graphWindows[gpuIndex]) {
+        graphWindows[gpuIndex] = new GraphWindow(CurrentVideoCard, 2);
+        graphWindows[gpuIndex]->setAttribute(Qt::WA_DeleteOnClose);
+
+        connect(graphWindows[gpuIndex], &GraphWindow::destroyed, this, [=]() {
+            graphWindows[gpuIndex] = nullptr;
+        });
+
+        graphWindows[gpuIndex]->show();
+    } else {
+        graphWindows[gpuIndex]->raise();
+        graphWindows[gpuIndex]->activateWindow();
     }
 }
 

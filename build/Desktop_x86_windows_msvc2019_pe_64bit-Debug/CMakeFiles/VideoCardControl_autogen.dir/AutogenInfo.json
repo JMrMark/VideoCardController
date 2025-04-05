@@ -323,9 +323,21 @@
 			null
 		],
 		[
+			"C:/Users/\u0410\u0440\u0442\u0435\u043c/Desktop/\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)/VideoCardControl/graphwindow.h",
+			"MU",
+			"EWIEGA46WW/moc_graphwindow.cpp",
+			null
+		],
+		[
 			"C:/Users/\u0410\u0440\u0442\u0435\u043c/Desktop/\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)/VideoCardControl/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
+			null
+		],
+		[
+			"C:/Users/\u0410\u0440\u0442\u0435\u043c/Desktop/\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)/VideoCardControl/videocardcollector.h",
+			"MU",
+			"EWIEGA46WW/moc_videocardcollector.cpp",
 			null
 		]
 	],
@@ -390,12 +402,22 @@
 			null
 		],
 		[
+			"C:/Users/\u0410\u0440\u0442\u0435\u043c/Desktop/\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)/VideoCardControl/graphwindow.cpp",
+			"MU",
+			null
+		],
+		[
 			"C:/Users/\u0410\u0440\u0442\u0435\u043c/Desktop/\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)/VideoCardControl/main.cpp",
 			"MU",
 			null
 		],
 		[
 			"C:/Users/\u0410\u0440\u0442\u0435\u043c/Desktop/\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)/VideoCardControl/mainwindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/\u0410\u0440\u0442\u0435\u043c/Desktop/\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)/VideoCardControl/videocardcollector.cpp",
 			"MU",
 			null
 		]
