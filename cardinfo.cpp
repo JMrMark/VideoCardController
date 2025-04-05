@@ -13,6 +13,12 @@ cardinfo::cardinfo(QWidget *parent)
     CounterOfVideoCards = -1;
     GetNumberOfVedioCards();
 
+    PaintNotAvailableButtons();
+
+    if (CounterOfVideoCards != -1){
+        ShowMainDataFromVideoCard(0);
+        ShowCurrentDataFromVideoCard(0);
+    }
 }
 
 cardinfo::~cardinfo()
@@ -34,13 +40,27 @@ void cardinfo::PaintNotAvailableButtons() {
     // Стиль неактивної червоної кнопки
     QString redStyle = R"(
         QPushButton {
-            background-color: #ff4d4d;
-            color: white;
-            border: 1px solid #cc0000;
-            border-radius: 6px;
+            border: 3px solid transparent;
+            border-color: #373B44;
+            padding: 8px 14px;
+            font-size: 16px;
+            color: #373B44;
+            background-color: #ff766a;
+            background-image: conical-gradient(from 90deg, transparent 90deg, #373B44 90deg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-origin: content;
+            outline: none;
         }
+
         QPushButton:hover {
+            outline: none;
             background-color: #e60000;
+        }
+
+        QPushButton:pressed {
+            background-color: #373B44;
+            color: white;
         }
     )";
 
