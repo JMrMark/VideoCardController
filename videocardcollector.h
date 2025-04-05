@@ -34,7 +34,6 @@ public:
     // Викликається постійно для оновлення актуальності інформації
     bool GetCurrentDataFromVideoCard(int NumberOfAskedVideoCard);
 
-
     // MIN = 0, MAX = 3
     int CounterOfVideoCards; // Кількість відеокард на пристрої
 

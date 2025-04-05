@@ -68,6 +68,7 @@ bool VideoCardCollector::GetMainDataFromVideoCard(int NumberOfAskedVideoCard){
 bool VideoCardCollector::GetCurrentDataFromVideoCard(int NumberOfAskedVideoCard) {
     if (NumberOfAskedVideoCard < 0 || NumberOfAskedVideoCard > CounterOfVideoCards) {
         qWarning("Invalid GPU index");
+        qDebug() << "[MAIN] Index is:" << NumberOfAskedVideoCard;
         return false;
     }
 
