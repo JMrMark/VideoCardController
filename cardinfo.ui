@@ -6,63 +6,112 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>623</width>
-    <height>635</height>
+    <width>947</width>
+    <height>788</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_6" rowstretch="0" columnstretch="0,1,0">
-    <item row="0" column="0">
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Orientation::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>60</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="0" column="2">
-     <spacer name="horizontalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Orientation::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>60</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="0" column="1">
-     <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0,0,0">
+   <layout class="QGridLayout" name="gridLayout_6" rowstretch="0,1,0" columnstretch="0,1,0">
+    <item row="1" column="1">
+     <layout class="QVBoxLayout" name="verticalLayout_5" stretch="1,0,0,1,1,1">
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <widget class="QPushButton" name="InfoCard1_b">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    border: 3px solid transparent;
+	border-color: #373B44;
+    padding: 8px 14px;
+    font-size: 16px;
+    color: #373B44;
+    background-color: transparent;
+    background-image: conical-gradient(from 90deg, transparent 90deg, #373B44 90deg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-origin: content;
+    outline: none;
+}
+
+QPushButton:hover {
+    outline: none;
+	background-color: #bfffac;
+}
+
+QPushButton:pressed {
+    background-color: #373B44;
+    color: white;
+}</string>
+          </property>
           <property name="text">
-           <string>PushButton</string>
+           <string>Відеокарта 1</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="InfoCard2_b">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    border: 3px solid transparent;
+	border-color: #373B44;
+    padding: 8px 14px;
+    font-size: 16px;
+    color: #373B44;
+    background-color: transparent;
+    background-image: conical-gradient(from 90deg, transparent 90deg, #373B44 90deg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-origin: content;
+    outline: none;
+}
+
+QPushButton:hover {
+    outline: none;
+	background-color: #bfffac;
+}
+
+QPushButton:pressed {
+    background-color: #373B44;
+    color: white;
+}</string>
+          </property>
           <property name="text">
-           <string>PushButton</string>
+           <string>Відеокарта 2</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="InfoCard3_b">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    border: 3px solid transparent;
+	border-color: #373B44;
+    padding: 8px 14px;
+    font-size: 16px;
+    color: #373B44;
+    background-color: transparent;
+    background-image: conical-gradient(from 90deg, transparent 90deg, #373B44 90deg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-origin: content;
+    outline: none;
+}
+
+QPushButton:hover {
+    outline: none;
+	background-color: #bfffac;
+}
+
+QPushButton:pressed {
+    background-color: #373B44;
+    color: white;
+}</string>
+          </property>
           <property name="text">
-           <string>PushButton</string>
+           <string>Відеокарта 3</string>
           </property>
          </widget>
         </item>
@@ -72,41 +121,195 @@
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QGroupBox" name="groupBox">
+          <property name="styleSheet">
+           <string notr="true">QGroupBox {
+    border: 2px solid #4A5568;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    font: bold 14px 'Segoe UI';
+    color: #2D3748;
+    background-color: #F7FAFC;
+}
+
+QGroupBox:title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 0 8px;
+    color: #2D3748;
+    background-color: #F7FAFC;
+}</string>
+          </property>
           <property name="title">
            <string>Модель </string>
           </property>
-          <widget class="QWidget" name="horizontalLayoutWidget">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>30</y>
-             <width>441</width>
-             <height>61</height>
-            </rect>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,0">
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QLabel" name="line_modelCard">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_4">
-              <property name="text">
-               <string>PushButton</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item>
+              <widget class="QLabel" name="modelText">
+               <property name="styleSheet">
+                <string notr="true">QLabel {
+    font: 13px 'Segoe UI';
+    color: #2D3748;
+}</string>
+               </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QGroupBox" name="groupBox_5">
+          <property name="styleSheet">
+           <string notr="true">QGroupBox {
+    border: 2px solid #4A5568;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    font: bold 14px 'Segoe UI';
+    color: #2D3748;
+    background-color: #F7FAFC;
+}
+
+QGroupBox:title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 0 8px;
+    color: #2D3748;
+    background-color: #F7FAFC;
+}</string>
+          </property>
+          <property name="title">
+           <string>Версія драйвера</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_8">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_9">
+             <item>
+              <widget class="QLabel" name="driverText">
+               <property name="styleSheet">
+                <string notr="true">QLabel {
+    font: 13px 'Segoe UI';
+    color: #2D3748;
+}</string>
+               </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QGroupBox" name="groupBox_4">
+          <property name="styleSheet">
+           <string notr="true">QGroupBox {
+    border: 2px solid #4A5568;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    font: bold 14px 'Segoe UI';
+    color: #2D3748;
+    background-color: #F7FAFC;
+}
+
+QGroupBox:title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 0 8px;
+    color: #2D3748;
+    background-color: #F7FAFC;
+}</string>
+          </property>
+          <property name="title">
+           <string>Завантаженість</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,1,1">
+             <item>
+              <widget class="QLabel" name="loadText">
+               <property name="styleSheet">
+                <string notr="true">QLabel {
+    font: 13px 'Segoe UI';
+    color: #2D3748;
+}</string>
+               </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="loadButton">
+               <property name="baseSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: #2B6CB0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font: 13px 'Segoe UI';
+}
+
+QPushButton:hover {
+    background-color: #2C5282;
+}
+
+QPushButton:pressed {
+    background-color: #1A365D;
+}</string>
+               </property>
+               <property name="text">
+                <string>Графік</string>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>
@@ -115,9 +318,85 @@
        <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
          <widget class="QGroupBox" name="groupBox_2">
-          <property name="title">
-           <string>GroupBox</string>
+          <property name="styleSheet">
+           <string notr="true">QGroupBox {
+    border: 2px solid #4A5568;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    font: bold 14px 'Segoe UI';
+    color: #2D3748;
+    background-color: #F7FAFC;
+}
+
+QGroupBox:title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 0 8px;
+    color: #2D3748;
+    background-color: #F7FAFC;
+}</string>
           </property>
+          <property name="title">
+           <string>Об'єм відеопам'яті</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,1,1">
+             <item>
+              <widget class="QLabel" name="capacityText">
+               <property name="styleSheet">
+                <string notr="true">QLabel {
+    font: 13px 'Segoe UI';
+    color: #2D3748;
+}</string>
+               </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_4">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="capacityButton">
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: #2B6CB0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font: 13px 'Segoe UI';
+}
+
+QPushButton:hover {
+    background-color: #2C5282;
+}
+
+QPushButton:pressed {
+    background-color: #1A365D;
+}</string>
+               </property>
+               <property name="text">
+                <string>Графік</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>
@@ -126,25 +405,142 @@
        <layout class="QVBoxLayout" name="verticalLayout_7">
         <item>
          <widget class="QGroupBox" name="groupBox_3">
-          <property name="title">
-           <string>GroupBox</string>
+          <property name="styleSheet">
+           <string notr="true">QGroupBox {
+    border: 2px solid #4A5568;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    font: bold 14px 'Segoe UI';
+    color: #2D3748;
+    background-color: #F7FAFC;
+}
+
+QGroupBox:title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 0 8px;
+    color: #2D3748;
+    background-color: #F7FAFC;
+}</string>
           </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_10">
-        <item>
-         <widget class="QGroupBox" name="groupBox_4">
           <property name="title">
-           <string>GroupBox</string>
+           <string>Температура відеокарти</string>
           </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,1,1">
+             <item>
+              <widget class="QLabel" name="tempText">
+               <property name="styleSheet">
+                <string notr="true">QLabel {
+    font: 13px 'Segoe UI';
+    color: #2D3748;
+}</string>
+               </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_5">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="tempButton">
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: #2B6CB0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font: 13px 'Segoe UI';
+}
+
+QPushButton:hover {
+    background-color: #2C5282;
+}
+
+QPushButton:pressed {
+    background-color: #1A365D;
+}</string>
+               </property>
+               <property name="text">
+                <string>Графік</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>
       </item>
      </layout>
+    </item>
+    <item row="1" column="0">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>160</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="2" column="1">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="2">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>160</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="1">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>
@@ -153,7 +549,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>623</width>
+     <width>947</width>
      <height>22</height>
     </rect>
    </property>

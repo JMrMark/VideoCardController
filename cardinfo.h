@@ -26,7 +26,7 @@ public:
     // Отримання інформації по відеокарті:
     //  * modelCard (QString)
     //  * capacityCard (int)
-    //  * driverVersion (int)
+    //  * driverVersion (QString)
     // NumberOfAskedVideoCard -> номер відеокарти
     // Ця функція викликається лише один раз
     bool GetMainDataFromVideoCard(int NumberOfAskedVideoCard);
@@ -38,6 +38,26 @@ public:
     // NumberOfAskedVideoCard -> номер відеокарти
     // Викликається постійно для оновлення актуальності інформації
     bool GetCurrentDataFromVideoCard(int NumberOfAskedVideoCard);
+
+    // Вивід інформації у користувацьке вікно
+    // Ця функція заміняє:
+    //  * modelText(ui) -> modelCard(QString)
+    //  * driverText(ui) -> driverVersion(QString)
+    // NumberOfAskedVideoCard -> номер відеокарти
+    // Ця функція викликається лише один раз
+    bool ShowMainDataFromVideoCard(int NumberOfAskedVideoCard);
+
+    // Вивід інформації у користувацьке вікно
+    // Ця функція заміняє:
+    //  * loadText(ui) -> loadCard(int)
+    //  * capacityText(ui) -> capacityUsedCard(int) "used of " capacityCard(int)
+    //  * tempText(ui) -> tempCard(int)
+    // NumberOfAskedVideoCard -> номер відеокарти
+    // Викликається постійно для оновлення актуальності інформації
+    bool ShowCurrentDataFromVideoCard(int NumberOfAskedVideoCard);
+
+    // Фарбуємо кнопки, які не є доступними користувачу
+    void PaintNotAvailableButtons();
 
 
 private slots:
@@ -53,12 +73,12 @@ private:
     // MIN = 0, MAX = 3
     int CounterOfVideoCards; // Кількість відеокард на пристрої
 
-    QString modelCard; // Модель відеокарти
-    int loadCard; // Завантаженість відеокарти
-    int tempCard; // Температура відеокарти
-    int capacityCard; // Об'єм відеопам'яті
-    int capacityUsedCard; // Об'єм використаної відеопам'яті
-    int driverVersion; // Версія драйвера
+    QString modelCard; // Модель відеокарти (+)
+    int loadCard; // Завантаженість відеокарти (+)
+    int tempCard; // Температура відеокарти (+)
+    int capacityCard; // Об'єм відеопам'яті (+)
+    int capacityUsedCard; // Об'єм використаної відеопам'яті (++)
+    QString driverVersion; // Версія драйвера (+)
 
 };
 

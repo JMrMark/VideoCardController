@@ -72,6 +72,7 @@ button:active {
         <property name="styleSheet">
          <string notr="true">QPushButton {
     border: 3px solid transparent;
+	border-color: #373B44;
     padding: 8px 14px;
     font-size: 16px;
     color: #373B44;
@@ -83,9 +84,9 @@ button:active {
     outline: none;
 }
 
-QPushButton:hover, QPushButton:focus {
-    border-color: #373B44;
+QPushButton:hover {
     outline: none;
+	background-color: #bfffac;
 }
 
 QPushButton:pressed {
@@ -100,6 +101,31 @@ QPushButton:pressed {
       </item>
       <item>
        <widget class="QPushButton" name="modeCard_b">
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    border: 3px solid transparent;
+	border-color: #373B44;
+    padding: 8px 14px;
+    font-size: 16px;
+    color: #373B44;
+    background-color: transparent;
+    background-image: conical-gradient(from 90deg, transparent 90deg, #373B44 90deg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-origin: content;
+    outline: none;
+}
+
+QPushButton:hover {
+    outline: none;
+	background-color: #bfffac;
+}
+
+QPushButton:pressed {
+    background-color: #373B44;
+    color: white;
+}</string>
+        </property>
         <property name="text">
          <string>Змінити режим відеокарти</string>
         </property>
@@ -107,6 +133,31 @@ QPushButton:pressed {
       </item>
       <item>
        <widget class="QPushButton" name="fanCard_b">
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    border: 3px solid transparent;
+	border-color: #373B44;
+    padding: 8px 14px;
+    font-size: 16px;
+    color: #373B44;
+    background-color: transparent;
+    background-image: conical-gradient(from 90deg, transparent 90deg, #373B44 90deg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-origin: content;
+    outline: none;
+}
+
+QPushButton:hover {
+    outline: none;
+	background-color: #bfffac;
+}
+
+QPushButton:pressed {
+    background-color: #373B44;
+    color: white;
+}</string>
+        </property>
         <property name="text">
          <string>Керування вентиляторами</string>
         </property>
@@ -114,6 +165,31 @@ QPushButton:pressed {
       </item>
       <item>
        <widget class="QPushButton" name="monitorCard_b">
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    border: 3px solid transparent;
+	border-color: #373B44;
+    padding: 8px 14px;
+    font-size: 16px;
+    color: #373B44;
+    background-color: transparent;
+    background-image: conical-gradient(from 90deg, transparent 90deg, #373B44 90deg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-origin: content;
+    outline: none;
+}
+
+QPushButton:hover {
+    outline: none;
+	background-color: #bfffac;
+}
+
+QPushButton:pressed {
+    background-color: #373B44;
+    color: white;
+}</string>
+        </property>
         <property name="text">
          <string>Моніторинг та логування</string>
         </property>
@@ -121,8 +197,33 @@ QPushButton:pressed {
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_5">
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    border: 3px solid transparent;
+	border-color: #373B44;
+    padding: 8px 14px;
+    font-size: 16px;
+    color: #373B44;
+    background-color: transparent;
+    background-image: conical-gradient(from 90deg, transparent 90deg, #373B44 90deg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-origin: content;
+    outline: none;
+}
+
+QPushButton:hover {
+    outline: none;
+	background-color: #bfffac;
+}
+
+QPushButton:pressed {
+    background-color: #373B44;
+    color: white;
+}</string>
+        </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>Вихід</string>
         </property>
        </widget>
       </item>
