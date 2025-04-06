@@ -2,12 +2,17 @@
 #define GRAPHWINDOW_H
 
 #include "videocardcollector.h"
+
 #include <QMainWindow>
 #include <QTimer>
 #include <QtCharts/QChartView>
 #include <QtCharts/QChart>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
+
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
 
 namespace Ui {
 class GraphWindow;
@@ -44,5 +49,14 @@ private:
     QTimer *updateTimer;
 
     int timeStep = 0; // для осі X (час)
+
+    QProcess *nvidiaProcess;
+
+    QLabel *updateLabel;
+    QLineEdit *updateLineEdit;
+    QPushButton *updateButton;
+
+    void setupTimerControls();
+    void restartUpdateTimer(int ms);
 };
 #endif // GRAPHWINDOW_H

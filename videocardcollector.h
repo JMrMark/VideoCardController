@@ -2,6 +2,7 @@
 #define VIDEOCARDCOLLECTOR_H
 
 #include <QString>
+#include <QProcess>
 
 class VideoCardCollector
 {
@@ -33,6 +34,15 @@ public:
     // NumberOfAskedVideoCard -> номер відеокарти
     // Викликається постійно для оновлення актуальності інформації
     bool GetCurrentDataFromVideoCard(int NumberOfAskedVideoCard);
+
+    // Оновлення змінної loadCard(int) -- Швидкий спосіб
+    bool UpdateCurrentLoadCard(int NumberOfAskedVideoCard, QProcess &process);
+
+    // Оновлення змінної capacityUsedCard(int) -- Швидкий спосіб
+    bool UpdateCurrentCapacityUsedCard(int NumberOfAskedVideoCard, QProcess &process);
+
+    // Оновлення змінної tempCard(int) -- Швидкий спосіб
+    bool UpdateCurrentTempCard(int NumberOfAskedVideoCard, QProcess &process);
 
     // MIN = 0, MAX = 3
     int CounterOfVideoCards; // Кількість відеокард на пристрої

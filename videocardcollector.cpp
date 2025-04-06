@@ -93,3 +93,72 @@ bool VideoCardCollector::GetCurrentDataFromVideoCard(int NumberOfAskedVideoCard)
 
     return true;
 }
+
+bool VideoCardCollector::UpdateCurrentLoadCard(int NumberOfAskedVideoCard, QProcess &process) {
+    process.start("nvidia-smi", {
+                                    "--query-gpu=utilization.gpu",
+                                    "--format=csv,noheader,nounits"
+                                });
+
+    if (!process.waitForFinished(3000)) // 3 секунди максимум
+        return false;
+
+    QString output = process.readAllStandardOutput();
+    QStringList lines = output.split('\n', Qt::SkipEmptyParts);
+
+    if (NumberOfAskedVideoCard < 0 || NumberOfAskedVideoCard >= lines.size())
+        return false;
+
+    bool ok = false;
+    int value = lines[NumberOfAskedVideoCard].trimmed().toInt(&ok);
+    if (ok)
+        loadCard = value;
+
+    return ok;
+}
+
+bool VideoCardCollector::UpdateCurrentCapacityUsedCard(int NumberOfAskedVideoCard, QProcess &process) {
+    process.start("nvidia-smi", {
+                                    "--query-gpu=memory.used",
+                                    "--format=csv,noheader,nounits"
+                                });
+
+    if (!process.waitForFinished(3000))
+        return false;
+
+    QString output = process.readAllStandardOutput();
+    QStringList lines = output.split('\n', Qt::SkipEmptyParts);
+
+    if (NumberOfAskedVideoCard < 0 || NumberOfAskedVideoCard >= lines.size())
+        return false;
+
+    bool ok = false;
+    int value = lines[NumberOfAskedVideoCard].trimmed().toInt(&ok);
+    if (ok)
+        capacityUsedCard = value;
+
+    return ok;
+}
+
+bool VideoCardCollector::UpdateCurrentTempCard(int NumberOfAskedVideoCard, QProcess &process) {
+    process.start("nvidia-smi", {
+                                    "--query-gpu=temperature.gpu",
+                                    "--format=csv,noheader,nounits"
+                                });
+
+    if (!process.waitForFinished(3000))
+        return false;
+
+    QString output = process.readAllStandardOutput();
+    QStringList lines = output.split('\n', Qt::SkipEmptyParts);
+
+    if (NumberOfAskedVideoCard < 0 || NumberOfAskedVideoCard >= lines.size())
+        return false;
+
+    bool ok = false;
+    int value = lines[NumberOfAskedVideoCard].trimmed().toInt(&ok);
+    if (ok)
+        tempCard = value;
+
+    return ok;
+}

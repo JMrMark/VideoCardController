@@ -24,6 +24,7 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/cardinfo.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QList
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QMargins
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QObject
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QProcess
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QRect
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QSize
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QSizeF
@@ -108,6 +109,7 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/cardinfo.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qoverload.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qpair.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qpoint.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qprocess.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qprocessordetection.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qrect.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qrefcount.h
@@ -189,6 +191,7 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/cardinfo.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpainterpath.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpalette.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpen.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpicture.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpixelformat.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpixmap.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpointingdevice.h
@@ -198,6 +201,9 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/cardinfo.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qrgba64.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qscreen.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qscreen_platform.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtextcursor.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtextdocument.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtextformat.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtextoption.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtgui-config.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtguiexports.h
@@ -209,7 +215,11 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/cardinfo.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qwindowdefs_win.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QGraphicsView
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QGraphicsWidget
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QLabel
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QLineEdit
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QMainWindow
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QPushButton
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractbutton.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractscrollarea.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qframe.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qgraphicsitem.h
@@ -217,7 +227,10 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/cardinfo.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qgraphicsscene.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qgraphicsview.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qgraphicswidget.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qlabel.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qlineedit.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qmainwindow.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qpushbutton.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qscrollarea.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qsizepolicy.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qtabwidget.h
@@ -257,6 +270,7 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/graphwindow
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QList
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QMargins
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QObject
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QProcess
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QRect
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QSize
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QSizeF
@@ -341,6 +355,7 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/graphwindow
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qoverload.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qpair.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qpoint.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qprocess.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qprocessordetection.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qrect.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qrefcount.h
@@ -422,6 +437,7 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/graphwindow
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpainterpath.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpalette.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpen.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpicture.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpixelformat.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpixmap.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpointingdevice.h
@@ -431,6 +447,9 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/graphwindow
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qrgba64.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qscreen.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qscreen_platform.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtextcursor.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtextdocument.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtextformat.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtextoption.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtgui-config.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtguiexports.h
@@ -442,7 +461,11 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/graphwindow
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qwindowdefs_win.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QGraphicsView
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QGraphicsWidget
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QLabel
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QLineEdit
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QMainWindow
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QPushButton
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractbutton.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractscrollarea.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qframe.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qgraphicsitem.h
@@ -450,7 +473,10 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/graphwindow
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qgraphicsscene.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qgraphicsview.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qgraphicswidget.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qlabel.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qlineedit.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qmainwindow.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qpushbutton.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qscrollarea.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qsizepolicy.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qtabwidget.h
@@ -485,6 +511,7 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/mainwindow.
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QList
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QMargins
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QObject
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QProcess
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QRect
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QSize
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/QSizeF
@@ -569,6 +596,7 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/mainwindow.
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qoverload.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qpair.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qpoint.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qprocess.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qprocessordetection.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qrect.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtCore/qrefcount.h
@@ -650,6 +678,7 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/mainwindow.
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpainterpath.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpalette.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpen.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpicture.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpixelformat.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpixmap.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qpointingdevice.h
@@ -659,6 +688,9 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/mainwindow.
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qrgba64.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qscreen.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qscreen_platform.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtextcursor.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtextdocument.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtextformat.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtextoption.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtgui-config.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtguiexports.h
@@ -670,7 +702,11 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/mainwindow.
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtGui/qwindowdefs_win.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QGraphicsView
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QGraphicsWidget
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QLabel
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QLineEdit
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QMainWindow
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QPushButton
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractbutton.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractscrollarea.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qframe.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qgraphicsitem.h
@@ -678,7 +714,10 @@ C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/mainwindow.
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qgraphicsscene.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qgraphicsview.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qgraphicswidget.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qlabel.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qlineedit.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qmainwindow.h
+ mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qpushbutton.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qscrollarea.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qsizepolicy.h
  mdp:C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qtabwidget.h
