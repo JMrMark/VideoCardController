@@ -1,6 +1,7 @@
 #include "videocardcollector.h"
 #include <QProcess>
 #include <QDebug>
+#include <QVector>
 
 VideoCardCollector::VideoCardCollector() {}
 
@@ -161,4 +162,86 @@ bool VideoCardCollector::UpdateCurrentTempCard(int NumberOfAskedVideoCard, QProc
         tempCard = value;
 
     return ok;
+}
+
+bool VideoCardCollector::GetLoggerOfVideoCard(QVector<std::string> *Data, QProcess &process)
+{
+    if (!Data)
+        return false;
+
+    QString command = "nvidia-smi";
+    QStringList arguments;
+    arguments << "--query-compute-apps=pid,process_name,used_gpu_memory"
+              << "--format=csv,noheader,nounits";
+
+    process.start(command, arguments);
+    if (!process.waitForFinished(3000)) {
+        qWarning() << "nvidia-smi timeout or error";
+        return false;
+    }
+
+    QString output = process.readAllStandardOutput();
+    QStringList lines = output.split('\n', Qt::SkipEmptyParts);
+
+    Data->clear();
+
+    for (const QString &line : lines) {
+        QStringList parts = line.split(',', Qt::SkipEmptyParts);
+        if (parts.size() >= 3) {
+            for (const QString &part : parts)
+                Data->append(part.trimmed().toStdString());
+        }
+    }
+
+    return true;
+}
+
+bool VideoCardCollector::GetIntegratedGraphicsCard(){
+    // Отримання моделі, драйвера та об'єму пам'яті
+    QProcess process;
+    process.start("wmic", QStringList() << "path" << "win32_VideoController" << "get" << "Name,DriverVersion,AdapterRAM" << "/format:csv");
+    if (!process.waitForFinished(3000))
+        return false;
+
+    QString output = process.readAllStandardOutput();
+    QStringList lines = output.split("\n", Qt::SkipEmptyParts);
+
+    for (const QString &line : lines)
+    {
+        if (line.contains("Intel"))
+        {
+            QStringList parts = line.split(",", Qt::SkipEmptyParts);
+            if (parts.size() >= 4)
+            {
+                modelCard = parts[3].trimmed();         // Name (модель)
+                driverVersion = parts[2].trimmed();     // DriverVersion
+                capacityCard = parts[1].trimmed().toInt() / (1024 * 1024); // AdapterRAM → MB
+                break;
+            }
+        }
+    }
+
+    // Отримання температури CPU як замінник
+    process.start("wmic", QStringList() << "/namespace:\\\\root\\wmi" << "path" << "MSAcpi_ThermalZoneTemperature" << "get" << "CurrentTemperature");
+    if (!process.waitForFinished(3000))
+        return false;
+
+    QString tempOutput = process.readAllStandardOutput();
+    QStringList tempLines = tempOutput.split("\n", Qt::SkipEmptyParts);
+
+    for (const QString &line : tempLines)
+    {
+        if (line.contains("CurrentTemperature"))
+            continue;
+
+        bool ok = false;
+        int tempRaw = line.trimmed().toInt(&ok);
+        if (ok)
+        {
+            tempCard = (tempRaw / 10) - 273.15; // Перетворення з децікельвінів у градуси Цельсія
+            break;
+        }
+    }
+
+    return true;
 }

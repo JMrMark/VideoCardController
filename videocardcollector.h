@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QProcess>
+#include <QVector>
 
 class VideoCardCollector
 {
@@ -43,6 +44,20 @@ public:
 
     // Оновлення змінної tempCard(int) -- Швидкий спосіб
     bool UpdateCurrentTempCard(int NumberOfAskedVideoCard, QProcess &process);
+
+
+    // Передаємо вектор Data зта записуємо в нього по три значення:
+    //  * PID
+    //  * name
+    //  * memoryUsed
+    bool GetLoggerOfVideoCard(QVector<std::string> *Data, QProcess &process);
+
+    // Отримуємо наступні дані про вбудовану відеокарту:
+    //  * modelCard (QString)
+    //  * capacityCard (int)
+    //  * driverVersion (QString)
+    //  * tempCard (int)
+    bool GetIntegratedGraphicsCard();
 
     // MIN = 0, MAX = 3
     int CounterOfVideoCards; // Кількість відеокард на пристрої

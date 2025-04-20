@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-16eaf79a989c63df9058.json",
+					"jsonFile" : "directory-.-Debug-ec0a49a74391b44a1728.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "VideoCardControl::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-VideoCardControl-Debug-1df5c9f6331d02d526e7.json",
+					"jsonFile" : "target-VideoCardControl-Debug-bfb8523e847128bbf2d0.json",
 					"name" : "VideoCardControl",
 					"projectIndex" : 0
 				},

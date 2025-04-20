@@ -26,6 +26,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         cardinfo.h cardinfo.cpp cardinfo.ui
         videocardcollector.h videocardcollector.cpp
         graphwindow.h graphwindow.cpp graphwindow.ui
+        cardmode.h cardmode.cpp cardmode.ui
+        cardlogger.h cardlogger.cpp cardlogger.ui
 
 
 

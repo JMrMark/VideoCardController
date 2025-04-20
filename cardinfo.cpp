@@ -18,6 +18,7 @@ cardinfo::cardinfo(QWidget *parent)
 
     if (CounterOfVideoCards != -1){
         CurrentVideoCard = 0;
+        PaintCurrentlySelectedButton();
         ShowMainDataFromVideoCard(CurrentVideoCard);
         ShowCurrentDataFromVideoCard(CurrentVideoCard);
     }
@@ -56,10 +57,43 @@ void cardinfo::PaintNotAvailableButtons() {
         }
     )";
 
+    QString whiteStyle = R"(
+        QPushButton {
+            border: 3px solid transparent;
+            border-color: #373B44;
+            padding: 8px 14px;
+            font-size: 16px;
+            color: #373B44;
+            background-color: transparent;
+            background-image: conical-gradient(from 90deg, transparent 90deg, #373B44 90deg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-origin: content;
+            outline: none;
+        }
+
+        QPushButton:hover {
+            outline: none;
+            background-color: #bfffac;
+        }
+
+        QPushButton:pressed {
+            background-color: #373B44;
+            color: white;
+        }
+    )";
+
     if (CounterOfVideoCards == 1) {
+        ui->pushButton->setStyleSheet(whiteStyle);
+        ui->InfoCard1_b->setStyleSheet(whiteStyle);
+        ui->InfoCard2_b->setStyleSheet(whiteStyle);
+        // ---
         ui->InfoCard3_b->setStyleSheet(redStyle);
     }
     else if (CounterOfVideoCards == 0) {
+        ui->pushButton->setStyleSheet(whiteStyle);
+        ui->InfoCard1_b->setStyleSheet(whiteStyle);
+        // ---
         ui->InfoCard2_b->setStyleSheet(redStyle);
         ui->InfoCard3_b->setStyleSheet(redStyle);
     }
@@ -67,6 +101,49 @@ void cardinfo::PaintNotAvailableButtons() {
         ui->InfoCard1_b->setStyleSheet(redStyle);
         ui->InfoCard2_b->setStyleSheet(redStyle);
         ui->InfoCard3_b->setStyleSheet(redStyle);
+    }
+}
+
+void cardinfo::PaintCurrentlySelectedButton(){
+    PaintNotAvailableButtons();
+
+    QString blueStyle = R"(
+        QPushButton {
+            border: 3px solid transparent;
+            border-color: #373B44;
+            padding: 8px 14px;
+            font-size: 16px;
+            color: #373B44;
+            background-color: #7ca3ef;
+            background-image: conical-gradient(from 90deg, transparent 90deg, #373B44 90deg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-origin: content;
+            outline: none;
+        }
+
+        QPushButton:hover {
+            outline: none;
+            background-color: #0959f7;
+        }
+
+        QPushButton:pressed {
+            background-color: #0b3382;
+            color: white;
+        }
+    )";
+
+    if (CurrentVideoCard == -10){
+        ui->pushButton->setStyleSheet(blueStyle);
+    }
+    else if (CurrentVideoCard == 0){
+        ui->InfoCard1_b->setStyleSheet(blueStyle);
+    }
+    else if (CurrentVideoCard == 1){
+        ui->InfoCard2_b->setStyleSheet(blueStyle);
+    }
+    else {
+        ui->InfoCard3_b->setStyleSheet(blueStyle);
     }
 }
 
@@ -84,6 +161,10 @@ bool cardinfo::ShowMainDataFromVideoCard(int NumberOfAskedVideoCard){
     // Заміна значень у UI
     ui->modelText->setText(modelCard);
     ui->driverText->setText(driverVersion);
+
+    ui->loadButton->show();
+    ui->capacityButton->show();
+    ui->tempButton->show();
 
     return true;
 }
@@ -118,6 +199,7 @@ void cardinfo::on_InfoCard1_b_clicked()
     }
     else {
         CurrentVideoCard = 0;
+        PaintCurrentlySelectedButton();
         ShowMainDataFromVideoCard(CurrentVideoCard);
         ShowCurrentDataFromVideoCard(CurrentVideoCard);
     }
@@ -131,6 +213,7 @@ void cardinfo::on_InfoCard2_b_clicked()
     }
     else {
         CurrentVideoCard = 1;
+        PaintCurrentlySelectedButton();
         ShowMainDataFromVideoCard(CurrentVideoCard);
         ShowCurrentDataFromVideoCard(CurrentVideoCard);
     }
@@ -144,6 +227,7 @@ void cardinfo::on_InfoCard3_b_clicked()
     }
     else {
         CurrentVideoCard = 2;
+        PaintCurrentlySelectedButton();
         ShowMainDataFromVideoCard(CurrentVideoCard);
         ShowCurrentDataFromVideoCard(CurrentVideoCard);
     }
@@ -206,6 +290,42 @@ void cardinfo::on_tempButton_clicked()
     } else {
         graphWindows[gpuIndex]->raise();
         graphWindows[gpuIndex]->activateWindow();
+    }
+}
+
+bool cardinfo::ShowIntegratedGraphicsCard(){
+    if (GetIntegratedGraphicsCard()){
+        // Заміна значень у UI
+        ui->modelText->setText(modelCard);
+        ui->driverText->setText(driverVersion);
+        ui->loadText->setText("Not avaliable");
+
+        // Відеопам'ять: "4096 MB"
+        ui->capacityText->setText(QString::number(capacityCard) + " MB");
+
+        // Температура (°C)
+        ui->tempText->setText(QString::number(tempCard) + " °C");
+
+        ui->loadButton->hide();
+        ui->capacityButton->hide();
+        ui->tempButton->hide();
+
+    }
+    else {
+        qDebug() << "Error with getting data form integrated graphics card";
+    }
+    return true;
+}
+
+void cardinfo::on_pushButton_clicked()
+{
+    if (ShowIntegratedGraphicsCard()){
+        CurrentVideoCard = -10;
+        PaintCurrentlySelectedButton();
+        //ui->loadText->setText("Not avaliable");
+    }
+    else {
+         ui->modelText->setText("Not seen here");
     }
 }
 

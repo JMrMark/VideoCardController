@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "cardinfo.h"
+#include "cardmode.h"
+#include "cardlogger.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -28,6 +30,43 @@ void MainWindow::on_infoCard_b_clicked()
         // При закритті обнуляємо вказівник
         connect(infoWindow, &QObject::destroyed, this, [this]() {
             infoWindow = nullptr;
+        });
+    }
+}
+
+
+void MainWindow::on_modeCard_b_clicked()
+{
+    //modeWindow
+    if (modeWindow && !modeWindow->isHidden()) {
+        modeWindow->raise();   // Піднімає вікно поверх інших
+        modeWindow->activateWindow(); // Робить його активним
+    } else {
+        modeWindow = new CardMode(this); // Створюємо вікно, якщо його ще немає
+        modeWindow->setAttribute(Qt::WA_DeleteOnClose); // Автоматично видаляється при закритті
+        modeWindow->show();
+
+        // При закритті обнуляємо вказівник
+        connect(modeWindow, &QObject::destroyed, this, [this]() {
+            modeWindow = nullptr;
+        });
+    }
+}
+
+
+void MainWindow::on_monitorCard_b_clicked()
+{
+    if (loggerWindow && !loggerWindow->isHidden()) {
+        loggerWindow->raise();   // Піднімає вікно поверх інших
+        loggerWindow->activateWindow(); // Робить його активним
+    } else {
+        loggerWindow = new CardLogger(this); // Створюємо вікно, якщо його ще немає
+        loggerWindow->setAttribute(Qt::WA_DeleteOnClose); // Автоматично видаляється при закритті
+        loggerWindow->show();
+
+        // При закритті обнуляємо вказівник
+        connect(loggerWindow, &QObject::destroyed, this, [this]() {
+            loggerWindow = nullptr;
         });
     }
 }

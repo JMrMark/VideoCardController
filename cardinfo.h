@@ -34,8 +34,19 @@ public:
     // Викликається постійно для оновлення актуальності інформації
     bool ShowCurrentDataFromVideoCard(int NumberOfAskedVideoCard);
 
+    // Вивід інформації у користувацьке вікно
+    // Ця функція заміняє:
+    //  * modelText(ui) -> modelCard(QString)
+    //  * driverText(ui) -> driverVersion(QString)
+    //  * tempText(ui) -> tempCard(int)
+    //  * capacityText(ui) -> capacityCard(int)
+    bool ShowIntegratedGraphicsCard();
+
     // Фарбуємо кнопки, які не є доступними користувачу
     void PaintNotAvailableButtons();
+
+    // Розфарбовуємо вибрану кнопку
+    void PaintCurrentlySelectedButton();
 
 
 private slots:
@@ -51,13 +62,18 @@ private slots:
 
     void on_tempButton_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::cardinfo *ui;
 
     GraphWindow* graphWindows[3] = {nullptr, nullptr, nullptr};
 
     // Вибрана відеокарта у даний момент
+    // -10 = IntegratedGraphicsCard
     int CurrentVideoCard;
+
+    bool IntegratedGraphicsCard;
 };
 
 #endif // CARDINFO_H

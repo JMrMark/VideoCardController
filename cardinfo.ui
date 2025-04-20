@@ -20,6 +20,38 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+            border: 3px solid transparent;
+            border-color: #373B44;
+            padding: 8px 14px;
+            font-size: 16px;
+            color: #373B44;
+            background-color: transparent;
+            background-image: conical-gradient(from 90deg, transparent 90deg, #373B44 90deg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-origin: content;
+            outline: none;
+        }
+
+        QPushButton:hover {
+            outline: none;
+            background-color: #bfffac;
+        }
+
+        QPushButton:pressed {
+            background-color: #373B44;
+            color: white;
+        }</string>
+          </property>
+          <property name="text">
+           <string>Вбудована відеокарта</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="InfoCard1_b">
           <property name="styleSheet">
            <string notr="true">QPushButton {
