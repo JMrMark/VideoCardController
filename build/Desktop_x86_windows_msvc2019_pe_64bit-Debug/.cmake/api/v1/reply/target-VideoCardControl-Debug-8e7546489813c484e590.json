@@ -23,7 +23,9 @@
 			"include",
 			"find_package",
 			"find_dependency",
-			"_qt_internal_find_qt_dependencies"
+			"_qt_internal_find_qt_dependencies",
+			"target_include_directories",
+			"target_sources"
 		],
 		"files" : 
 		[
@@ -77,13 +79,19 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 73,
+				"line" : 84,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
 				"line" : 55,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 64,
 				"parent" : 0
 			},
 			{
@@ -94,59 +102,59 @@
 			},
 			{
 				"file" : 4,
-				"parent" : 7
+				"parent" : 8
 			},
 			{
 				"command" : 8,
 				"file" : 4,
 				"line" : 181,
-				"parent" : 8
-			},
-			{
-				"file" : 3,
 				"parent" : 9
 			},
 			{
-				"command" : 7,
 				"file" : 3,
-				"line" : 55,
 				"parent" : 10
 			},
 			{
-				"file" : 2,
+				"command" : 7,
+				"file" : 3,
+				"line" : 55,
 				"parent" : 11
+			},
+			{
+				"file" : 2,
+				"parent" : 12
 			},
 			{
 				"command" : 6,
 				"file" : 2,
 				"line" : 61,
-				"parent" : 12
+				"parent" : 13
 			},
 			{
 				"command" : 8,
 				"file" : 4,
 				"line" : 181,
-				"parent" : 8
+				"parent" : 9
 			},
 			{
 				"file" : 6,
-				"parent" : 14
+				"parent" : 15
 			},
 			{
 				"command" : 7,
 				"file" : 6,
 				"line" : 55,
-				"parent" : 15
+				"parent" : 16
 			},
 			{
 				"file" : 5,
-				"parent" : 16
+				"parent" : 17
 			},
 			{
 				"command" : 6,
 				"file" : 5,
 				"line" : 61,
-				"parent" : 17
+				"parent" : 18
 			},
 			{
 				"command" : 5,
@@ -158,135 +166,147 @@
 				"command" : 7,
 				"file" : 6,
 				"line" : 43,
-				"parent" : 15
+				"parent" : 16
 			},
 			{
 				"file" : 11,
-				"parent" : 20
+				"parent" : 21
 			},
 			{
 				"command" : 10,
 				"file" : 11,
 				"line" : 43,
-				"parent" : 21
+				"parent" : 22
 			},
 			{
 				"command" : 9,
 				"file" : 10,
 				"line" : 143,
-				"parent" : 22
+				"parent" : 23
 			},
 			{
 				"command" : 8,
 				"file" : 9,
 				"line" : 76,
-				"parent" : 23
+				"parent" : 24
 			},
 			{
 				"file" : 8,
-				"parent" : 24
+				"parent" : 25
 			},
 			{
 				"command" : 7,
 				"file" : 8,
 				"line" : 57,
-				"parent" : 25
+				"parent" : 26
 			},
 			{
 				"file" : 7,
-				"parent" : 26
+				"parent" : 27
 			},
 			{
 				"command" : 6,
 				"file" : 7,
 				"line" : 61,
-				"parent" : 27
+				"parent" : 28
 			},
 			{
 				"command" : 7,
 				"file" : 8,
 				"line" : 45,
-				"parent" : 25
+				"parent" : 26
 			},
 			{
 				"file" : 14,
-				"parent" : 29
+				"parent" : 30
 			},
 			{
 				"command" : 10,
 				"file" : 14,
 				"line" : 44,
-				"parent" : 30
+				"parent" : 31
 			},
 			{
 				"command" : 9,
 				"file" : 10,
 				"line" : 143,
-				"parent" : 31
+				"parent" : 32
 			},
 			{
 				"command" : 8,
 				"file" : 9,
 				"line" : 76,
-				"parent" : 32
+				"parent" : 33
 			},
 			{
 				"file" : 13,
-				"parent" : 33
+				"parent" : 34
 			},
 			{
 				"command" : 7,
 				"file" : 13,
 				"line" : 55,
-				"parent" : 34
+				"parent" : 35
 			},
 			{
 				"file" : 12,
-				"parent" : 35
+				"parent" : 36
 			},
 			{
 				"command" : 6,
 				"file" : 12,
 				"line" : 61,
-				"parent" : 36
+				"parent" : 37
 			},
 			{
 				"command" : 6,
 				"file" : 12,
 				"line" : 83,
-				"parent" : 36
+				"parent" : 37
 			},
 			{
 				"command" : 9,
 				"file" : 10,
 				"line" : 143,
-				"parent" : 22
+				"parent" : 23
 			},
 			{
 				"command" : 8,
 				"file" : 9,
 				"line" : 76,
-				"parent" : 39
+				"parent" : 40
 			},
 			{
 				"file" : 16,
-				"parent" : 40
+				"parent" : 41
 			},
 			{
 				"command" : 7,
 				"file" : 16,
 				"line" : 55,
-				"parent" : 41
+				"parent" : 42
 			},
 			{
 				"file" : 15,
-				"parent" : 42
+				"parent" : 43
 			},
 			{
 				"command" : 6,
 				"file" : 15,
 				"line" : 61,
-				"parent" : 43
+				"parent" : 44
+			},
+			{
+				"command" : 11,
+				"file" : 1,
+				"line" : 58,
+				"parent" : 0
+			},
+			{
+				"command" : 12,
+				"file" : 1,
+				"line" : 60,
+				"parent" : 0
 			}
 		]
 	},
@@ -299,15 +319,15 @@
 					"fragment" : "-DQT_QML_DEBUG /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 20,
 					"fragment" : "-Zc:__cplusplus"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 20,
 					"fragment" : "-permissive-"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 20,
 					"fragment" : "-utf-8"
 				}
 			],
@@ -318,7 +338,7 @@
 					"define" : "QT_CHARTS_LIB"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 20,
 					"define" : "QT_CORE_LIB"
 				},
 				{
@@ -338,27 +358,27 @@
 					"define" : "QT_WIDGETS_LIB"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 20,
 					"define" : "UNICODE"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 20,
 					"define" : "WIN32"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 20,
 					"define" : "WIN64"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 20,
 					"define" : "_ENABLE_EXTENDED_ALIGNED_STORAGE"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 20,
 					"define" : "_UNICODE"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 20,
 					"define" : "_WIN64"
 				}
 			],
@@ -369,17 +389,21 @@
 					"path" : "C:/Users/\u0410\u0440\u0442\u0435\u043c/Desktop/\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Debug/VideoCardControl_autogen/include"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 46,
+					"path" : "C:/Users/\u0410\u0440\u0442\u0435\u043c/Desktop/\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)/VideoCardControl/external/nvapi/include"
+				},
+				{
+					"backtrace" : 20,
 					"isSystem" : true,
 					"path" : "C:/Qt/6.8.0/msvc2022_64/include/QtCore"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 20,
 					"isSystem" : true,
 					"path" : "C:/Qt/6.8.0/msvc2022_64/include"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 20,
 					"isSystem" : true,
 					"path" : "C:/Qt/6.8.0/msvc2022_64/mkspecs/win32-msvc"
 				},
@@ -414,8 +438,8 @@
 			{
 				"backtraces" : 
 				[
-					19,
-					19
+					20,
+					20
 				],
 				"standard" : "17"
 			},
@@ -475,7 +499,12 @@
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 13,
+				"backtrace" : 7,
+				"fragment" : "\"C:\\Users\\\u0410\u0440\u0442\u0435\u043c\\Desktop\\\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)\\VideoCardControl\\external\\nvapi\\libs\\nvapi64.lib\"",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 14,
 				"fragment" : "C:\\Qt\\6.8.0\\msvc2022_64\\lib\\Qt6OpenGLWidgetsd.lib",
 				"role" : "libraries"
 			},
@@ -485,62 +514,62 @@
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 13,
+				"backtrace" : 14,
 				"fragment" : "C:\\Qt\\6.8.0\\msvc2022_64\\lib\\Qt6OpenGLd.lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 18,
+				"backtrace" : 19,
 				"fragment" : "C:\\Qt\\6.8.0\\msvc2022_64\\lib\\Qt6Guid.lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 19,
+				"backtrace" : 20,
 				"fragment" : "C:\\Qt\\6.8.0\\msvc2022_64\\lib\\Qt6Cored.lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 28,
+				"backtrace" : 29,
 				"fragment" : "mpr.lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 28,
+				"backtrace" : 29,
 				"fragment" : "userenv.lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 37,
+				"backtrace" : 38,
 				"fragment" : "C:\\Qt\\6.8.0\\msvc2022_64\\lib\\Qt6EntryPointd.lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 38,
+				"backtrace" : 39,
 				"fragment" : "shell32.lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 44,
+				"backtrace" : 45,
 				"fragment" : "d3d11.lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 44,
+				"backtrace" : 45,
 				"fragment" : "dxgi.lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 44,
+				"backtrace" : 45,
 				"fragment" : "dxguid.lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 44,
+				"backtrace" : 45,
 				"fragment" : "d3d12.lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 13,
+				"backtrace" : 14,
 				"fragment" : "user32.lib",
 				"role" : "libraries"
 			},
@@ -571,7 +600,8 @@
 				9,
 				11,
 				14,
-				17
+				17,
+				19
 			]
 		},
 		{
@@ -584,11 +614,11 @@
 				10,
 				13,
 				16,
-				19,
 				20,
 				21,
 				22,
-				23
+				23,
+				24
 			]
 		},
 		{
@@ -600,14 +630,14 @@
 				12,
 				15,
 				18,
-				24
+				25
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				25
+				26
 			]
 		}
 	],
@@ -716,6 +746,11 @@
 			"backtrace" : 4,
 			"path" : "cardlogger.ui",
 			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 47,
+			"path" : "external/nvapi/source/NvApiDriverSettings.c",
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,

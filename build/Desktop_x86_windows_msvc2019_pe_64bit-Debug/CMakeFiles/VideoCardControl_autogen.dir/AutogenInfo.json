@@ -416,6 +416,7 @@
 	],
 	"MOC_INCLUDES" : 
 	[
+		"C:/Users/\u0410\u0440\u0442\u0435\u043c/Desktop/\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)/VideoCardControl/external/nvapi/include",
 		"C:/Qt/6.8.0/msvc2022_64/include/QtCore",
 		"C:/Qt/6.8.0/msvc2022_64/include",
 		"C:/Qt/6.8.0/msvc2022_64/mkspecs/win32-msvc",
@@ -462,6 +463,11 @@
 		],
 		[
 			"C:/Users/\u0410\u0440\u0442\u0435\u043c/Desktop/\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)/VideoCardControl/cardmode.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/\u0410\u0440\u0442\u0435\u043c/Desktop/\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)/VideoCardControl/external/nvapi/source/NvApiDriverSettings.c",
 			"MU",
 			null
 		],

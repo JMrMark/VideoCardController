@@ -513,6 +513,7 @@ VideoCardControl_autogen/timestamp: \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/cardlogger.h \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/cardmode.cpp \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/cardmode.h \
+	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/source/NvApiDriverSettings.c \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/graphwindow.cpp \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/graphwindow.h \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/main.cpp \

@@ -6,20 +6,705 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>913</width>
+    <height>670</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <property name="styleSheet">
+   <string notr="true">/* Загальний фон */
+QWidget {
+    background-color: #2b2b2b;
+    color: #f0f0f0;
+    font-family: &quot;Segoe UI&quot;, &quot;Roboto&quot;, sans-serif;
+    font-size: 12px;
+}
+
+/* QLabel */
+QLabel {
+    color: #eeeeee;
+    font-weight: normal;
+}
+
+/* QComboBox */
+QComboBox {
+    background-color: #3a3a3a;
+    border: 1px solid #777;
+    border-radius: 4px;
+    padding: 4px;
+    color: #ffffff;
+}
+
+QComboBox:hover {
+    border: 1px solid #aaa;
+    background-color: #444;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 18px;
+    border-left: 1px solid #666;
+    background-color: #444;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #3a3a3a;
+    selection-background-color: #505050;
+    border: 1px solid #555;
+    color: #ffffff;
+}
+
+/* QGroupBox */
+QGroupBox {
+    border: 1px solid #666;
+    border-radius: 6px;
+    margin-top: 6px;
+    padding: 6px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 6px;
+    color: #cccccc;
+    background-color: #2b2b2b;
+}
+
+/* QScrollArea */
+QScrollArea {
+    border: none;
+    background-color: #2b2b2b;
+}
+
+QScrollBar:vertical {
+    border: none;
+    background: #3a3a3a;
+    width: 10px;
+    margin: 2px;
+}
+
+QScrollBar::handle:vertical {
+    background: #666;
+    min-height: 20px;
+    border-radius: 4px;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: none;
+}
+
+/* QPushButton — кнопки виразні */
+QPushButton {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #5aa0f0;
+}
+
+QPushButton:pressed {
+    background-color: #3f7ecb;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,1,0" columnstretch="0,1,1,0">
+    <item row="0" column="1">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="0">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>100</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="1" colspan="2">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QGroupBox" name="groupBox">
+        <property name="title">
+         <string>Режим роботи відеокарти</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <layout class="QVBoxLayout" name="verticalLayout" stretch="1">
+           <item>
+            <widget class="QScrollArea" name="scrollArea">
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>-72</y>
+                <width>640</width>
+                <height>534</height>
+               </rect>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_4" rowstretch="0,0,0,0" rowminimumheight="0,0,0,0">
+               <item row="1" column="0">
+                <layout class="QVBoxLayout" name="verticalLayout_2">
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_2">
+                   <property name="title">
+                    <string>Налаштування</string>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_3">
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0">
+                      <item>
+                       <widget class="QLabel" name="label">
+                        <property name="text">
+                         <string>Назва функції (англ)</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_2">
+                        <property name="text">
+                         <string>Назва функції (укр)</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_3">
+                        <property name="text">
+                         <string>Налаштування</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_2">
+                      <item>
+                       <widget class="QLabel" name="label_4">
+                        <property name="text">
+                         <string>Vertical Sync                               </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_5">
+                        <property name="text">
+                         <string>Вертикальна синхронізація</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox">
+                        <item>
+                         <property name="text">
+                          <string>Вимкнуто</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Увімкнено</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Залежить від 3D-програми</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_4">
+                      <item>
+                       <widget class="QLabel" name="label_15">
+                        <property name="text">
+                         <string>Antialiasing Mode</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_6">
+                        <property name="text">
+                         <string>Режим згладжування</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox_2">
+                        <item>
+                         <property name="text">
+                          <string>Керування програмою</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Примусово увімк.</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Вимкнено</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_10">
+                      <item>
+                       <widget class="QLabel" name="label_17">
+                        <property name="text">
+                         <string>Antialiasing Setting</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_8">
+                        <property name="text">
+                         <string>Рівень згладжування</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox_4">
+                        <item>
+                         <property name="text">
+                          <string>Вимкнуто</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>2х</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>4х</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>8х</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>16х</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_11">
+                      <item>
+                       <widget class="QLabel" name="label_16">
+                        <property name="text">
+                         <string>Anisotropic Filtering</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_7">
+                        <property name="text">
+                         <string>Анізотропна фільтрація</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox_3">
+                        <item>
+                         <property name="text">
+                          <string>Керування програмою</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Примусово 2x, 4x, 8x, 16x</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_3">
+                      <item>
+                       <widget class="QLabel" name="label_23">
+                        <property name="text">
+                         <string>Texture Filtering - Quality</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_14">
+                        <property name="text">
+                         <string>Якість фільтрації текстур</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox_10">
+                        <item>
+                         <property name="text">
+                          <string>Висока продуктивність</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Продуктивність</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Якість</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Висока якість</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_9">
+                      <item>
+                       <widget class="QLabel" name="label_18">
+                        <property name="text">
+                         <string>Ambient Occlusion</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_9">
+                        <property name="text">
+                         <string>Амбієнтне затемнення</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox_5">
+                        <item>
+                         <property name="text">
+                          <string>Вимкнено</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Увімкнено</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Висока якість</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="0,0,0">
+                      <item>
+                       <widget class="QLabel" name="label_19">
+                        <property name="text">
+                         <string>Power Management Mode                  </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_10">
+                        <property name="text">
+                         <string>Енергоспоживання                        </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox_6">
+                        <property name="iconSize">
+                         <size>
+                          <width>16</width>
+                          <height>16</height>
+                         </size>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>Адаптивний</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Максисальна продуктивність</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_7">
+                      <item>
+                       <widget class="QLabel" name="label_20">
+                        <property name="text">
+                         <string>Triple Buffering</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_11">
+                        <property name="text">
+                         <string>Потрійний буфер</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox_7">
+                        <item>
+                         <property name="text">
+                          <string>Увімкнено</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Вимкнено</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_6">
+                      <item>
+                       <widget class="QLabel" name="label_21">
+                        <property name="text">
+                         <string>Threaded Optimization</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_12">
+                        <property name="text">
+                         <string>Багатопоточна оптимізація</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox_8">
+                        <item>
+                         <property name="text">
+                          <string>Авто</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Увімкнено</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Вимкнено</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_5">
+                      <item>
+                       <widget class="QLabel" name="label_22">
+                        <property name="text">
+                         <string>CUDA - GPUs</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_13">
+                        <property name="text">
+                         <string>CUDA - ГПУ</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox_9">
+                        <item>
+                         <property name="text">
+                          <string>Усі</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Вибрані</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="3" column="0">
+                <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="1,1,1">
+                 <item>
+                  <spacer name="horizontalSpacer_4">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_2">
+                   <property name="text">
+                    <string>Застосувати</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton">
+                   <property name="text">
+                    <string>Скинути</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="0" column="0">
+                <layout class="QGridLayout" name="gridLayout_5" columnstretch="2,0">
+                 <item row="1" column="1">
+                  <spacer name="horizontalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="0" column="1">
+                  <spacer name="horizontalSpacer_5">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_24">
+                   <property name="text">
+                    <string>Графічний бажаний процесор</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QComboBox" name="comboBox_11">
+                   <item>
+                    <property name="text">
+                     <string>NVIDIA GeForce MX450</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="3">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>100</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="2" column="2">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>913</width>
      <height>22</height>
     </rect>
    </property>

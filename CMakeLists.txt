@@ -54,6 +54,17 @@ endif()
 
 target_link_libraries(VideoCardControl PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Charts)
 
+# Додати шлях до заголовків -- HERE
+target_include_directories(VideoCardControl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/external/nvapi/include)
+
+target_sources(VideoCardControl PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/nvapi/source/NvApiDriverSettings.c
+)
+
+target_link_libraries(VideoCardControl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/external/nvapi/libs/nvapi64.lib)
+
+# -- HERE
+
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
