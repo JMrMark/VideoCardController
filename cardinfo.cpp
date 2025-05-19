@@ -1,7 +1,6 @@
 #include "cardinfo.h"
 #include "ui_cardinfo.h"
 #include "graphwindow.h"
-#include "nvapi.h"
 #include <QProcess>
 #include <QDebug>
 

@@ -33,6 +33,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
 
 
+
+
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET VideoCardControl APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -60,9 +63,9 @@ target_include_directories(VideoCardControl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/
 target_sources(VideoCardControl PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/external/nvapi/source/NvApiDriverSettings.c
 )
+target_sources(VideoCardControl PRIVATE app_manifest.rc)
 
 target_link_libraries(VideoCardControl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/external/nvapi/libs/nvapi64.lib)
-
 # -- HERE
 
 

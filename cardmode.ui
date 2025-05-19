@@ -168,9 +168,9 @@ QPushButton:pressed {
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-72</y>
+                <y>0</y>
                 <width>640</width>
-                <height>534</height>
+                <height>498</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_4" rowstretch="0,0,0,0" rowminimumheight="0,0,0,0">
@@ -238,43 +238,6 @@ QPushButton:pressed {
                         <item>
                          <property name="text">
                           <string>Залежить від 3D-програми</string>
-                         </property>
-                        </item>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                    <item>
-                     <layout class="QHBoxLayout" name="horizontalLayout_4">
-                      <item>
-                       <widget class="QLabel" name="label_15">
-                        <property name="text">
-                         <string>Antialiasing Mode</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QLabel" name="label_6">
-                        <property name="text">
-                         <string>Режим згладжування</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QComboBox" name="comboBox_2">
-                        <item>
-                         <property name="text">
-                          <string>Керування програмою</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>Примусово увімк.</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>Вимкнено</string>
                          </property>
                         </item>
                        </widget>

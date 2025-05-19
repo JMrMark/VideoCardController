@@ -1,6 +1,4 @@
 C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Debug/VideoCardControl_autogen/EWIEGA46WW/moc_cardmode.cpp: C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/cardmode.h \
-  C:/Qt/6.8.0/msvc2022_64/include/QtCore/QProcess \
-  C:/Qt/6.8.0/msvc2022_64/include/QtCore/QString \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/QVector \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/q20functional.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/q20iterator.h \
@@ -47,7 +45,6 @@ C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/build/Desk
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qglobalstatic.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qhash.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qhashfunctions.h \
-  C:/Qt/6.8.0/msvc2022_64/include/QtCore/qiodevice.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qiodevicebase.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qiterable.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qiterator.h \
@@ -71,7 +68,6 @@ C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/build/Desk
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qoverload.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qpair.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qpoint.h \
-  C:/Qt/6.8.0/msvc2022_64/include/QtCore/qprocess.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qprocessordetection.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qrect.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qrefcount.h \
@@ -157,5 +153,4 @@ C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/build/Desk
   C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qtwidgets-config.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qtwidgetsexports.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qtwidgetsglobal.h \
-  C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qwidget.h \
-  C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/videocardcollector.h
+  C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qwidget.h
