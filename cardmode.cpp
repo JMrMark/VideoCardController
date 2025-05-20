@@ -80,6 +80,7 @@ bool CardMode::Profile_Insert_All_Data(){
             return false;
         }
         else {
+            StandartData = db.loadProfileData(profileName);
             VertSync = StandartData.at(0);
             AntMode = StandartData.at(1);
             AnisFiltering = StandartData.at(2);
@@ -89,6 +90,16 @@ bool CardMode::Profile_Insert_All_Data(){
             TripBuffering = StandartData.at(6);
             ThrOpti = StandartData.at(7);
             CUDA = StandartData.at(8);
+
+            ui->VertSync_box->setCurrentIndex(VertSync);
+            ui->AntMode_box->setCurrentIndex(AntMode);
+            ui->AnisFiltering_box->setCurrentIndex(AnisFiltering);
+            ui->TextFiltQuality_box->setCurrentIndex(TextFiltQuality);
+            ui->AmbOcculusion_box->setCurrentIndex(AmbOcculusion);
+            ui->PowManagMode_box->setCurrentIndex(PowManagMode);
+            ui->TripBuffering_box->setCurrentIndex(TripBuffering);
+            ui->ThrOpti_box->setCurrentIndex(ThrOpti);
+            ui->CUDA_box->setCurrentIndex(CUDA);
             return true;
         }
     }
@@ -518,6 +529,8 @@ void CardMode::on_pushButton_clicked()
     Profile_Reset_All_Data();
     Profile_Update_All_Data();
 
+    db.saveProfileData(profileName, VertSync, AntMode, AnisFiltering, TextFiltQuality, AmbOcculusion, PowManagMode, TripBuffering, ThrOpti, CUDA);
+
     // Оновлюємо інтерфейс
     ui->VertSync_box->setCurrentIndex(VertSync);
     ui->AntMode_box->setCurrentIndex(AntMode);
@@ -533,6 +546,9 @@ void CardMode::on_pushButton_clicked()
 
 void CardMode::on_pushButton_2_clicked()
 {
+    int index = ui->profile_box->currentIndex();
+    profileName = "Profile_" + QString::number(index + 1);
+
     // Отримуємо значення profileName
     VertSync = ui->VertSync_box->currentIndex();
     AntMode = ui->AntMode_box->currentIndex();
@@ -549,9 +565,11 @@ void CardMode::on_pushButton_2_clicked()
 
     Profile_Update_All_Data();
 
+    db.saveProfileData(profileName, VertSync, AntMode, AnisFiltering, TextFiltQuality, AmbOcculusion, PowManagMode, TripBuffering, ThrOpti, CUDA);
+
 }
 
-
+// Кнопка обирання профілю
 void CardMode::on_profile_button_clicked()
 {
     int index = ui->profile_box->currentIndex();
@@ -559,18 +577,26 @@ void CardMode::on_profile_button_clicked()
 
     if (index == 0){
         ui->profile_label->setText("Обраний профіль: Профіль 1");
+        Profile_Insert_All_Data();
     }
     else if (index == 1){
         ui->profile_label->setText("Обраний профіль: Профіль 2");
-        profileCheck[1] = true;
-        Profile_Create();
+        if (profileCheckTwo[0]){
+            profileCheckTwo[0] = false;
+            profileCheck[1] = true;
+            Profile_Create();
+        }
         Profile_Insert_All_Data();
     }
     else {
         ui->profile_label->setText("Обраний профіль: Профіль 3");
-        profileCheck[2] = true;
-        Profile_Create();
+        if (profileCheckTwo[1]){
+            profileCheckTwo[1] = false;
+            profileCheck[2] = true;
+            Profile_Create();
+        }
         Profile_Insert_All_Data();
     }
+    qDebug() << "Обрано профіль: " << profileName;
 }
 

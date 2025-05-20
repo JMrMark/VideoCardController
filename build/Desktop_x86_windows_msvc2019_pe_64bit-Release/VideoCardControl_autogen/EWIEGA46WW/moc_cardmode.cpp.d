@@ -1,4 +1,5 @@
 C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/EWIEGA46WW/moc_cardmode.cpp: C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/cardmode.h \
+  C:/Qt/6.8.0/msvc2022_64/include/QtCore/QDebug \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/QVector \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/q20functional.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/q20iterator.h \
@@ -57,6 +58,7 @@ C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/build/Desk
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qmargins.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qmath.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qmetacontainer.h \
+  C:/Qt/6.8.0/msvc2022_64/include/QtCore/qmetaobject.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qmetatype.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qminmax.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/qnamespace.h \
@@ -146,6 +148,15 @@ C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/build/Desk
   C:/Qt/6.8.0/msvc2022_64/include/QtGui/qtransform.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.8.0/msvc2022_64/include/QtSql/QSqlDatabase \
+  C:/Qt/6.8.0/msvc2022_64/include/QtSql/QSqlError \
+  C:/Qt/6.8.0/msvc2022_64/include/QtSql/QSqlQuery \
+  C:/Qt/6.8.0/msvc2022_64/include/QtSql/qsqldatabase.h \
+  C:/Qt/6.8.0/msvc2022_64/include/QtSql/qsqlerror.h \
+  C:/Qt/6.8.0/msvc2022_64/include/QtSql/qsqlquery.h \
+  C:/Qt/6.8.0/msvc2022_64/include/QtSql/qtsql-config.h \
+  C:/Qt/6.8.0/msvc2022_64/include/QtSql/qtsqlexports.h \
+  C:/Qt/6.8.0/msvc2022_64/include/QtSql/qtsqlglobal.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/QMainWindow \
   C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qmainwindow.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qsizepolicy.h \
@@ -154,6 +165,7 @@ C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/build/Desk
   C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qtwidgetsexports.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qtwidgetsglobal.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qwidget.h \
+  C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/databasecollector.h \
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/NvApiDriverSettings.h \
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/nvapi.h \
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/nvapi_lite_common.h \

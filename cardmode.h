@@ -15,6 +15,7 @@
 #include <QVector>
 #include "nvapi.h"
 #include <NvApiDriverSettings.h>
+#include "databasecollector.h"
 
 namespace Ui {
 class CardMode;
@@ -82,6 +83,8 @@ private:
     NvDRSSessionHandle hSession;
     NvDRSProfileHandle hProfile;
 
+    DataBaseCollector db;
+
     // Отримуємо дані з NVAPI
     int Collect_ParamFromProfile(int id);
 
@@ -101,6 +104,7 @@ private:
     QString profileName = "Profile_1";
 
     QVector<bool> profileCheck = {true, false, false};
+    QVector<bool> profileCheckTwo = {true, true};
 
     // Vertical Sync (+)
     // 0 = Вимкнено
