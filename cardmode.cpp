@@ -13,50 +13,30 @@ CardMode::CardMode(QWidget *parent)
 
     setWindowTitle("Video Card Settings");
 
-    //qDebug() << CollectVertSync() << " <- Here VertSync";
-
-    //qDebug() << "STARTED";
-    //find();
-    CreateProfile();
-    AttachApplicationToProfile("C:\Users\Артем\Desktop\СПЗ (Курсова)\VideoCardControl\build\Desktop_x86_windows_msvc2019_pe_64bit-Release\VideoCardControl");
-
-    AddVertSyncToProfile();
-    AddAntialiasingModeToProfile();
-    AddAnisotropicFilteringToProfile();
-    AddTextureFilteringToProfile();
-    AddAmbientOcclusionToProfile();
-    AddPowerManagementModeToProfile();
-    AddTripleBufferingToProfile();
-    AddThreadedOptimizationToProfile();
-    AddCUDAtoProfile();
-
-    ListProfileSettings();
-
-    StandartData = {CollectVertSync()
-                    , CollectAntMode()
-                    , CollectAnisFiltering()
-                    , CollectTextFiltQuality()
-                    , CollectAmbOcculusion()
-                    , CollectPowManagMode()
-                    , CollectTripBuffering()
-                    , CollectThrOpti()
-                    , CollectCUDA()};
-
-    VertSync = StandartData.at(0);
-    AntMode = StandartData.at(1);
-    AnisFiltering = StandartData.at(2);
-    TextFiltQuality = StandartData.at(3);
-    AmbOcculusion = StandartData.at(4);
-    PowManagMode = StandartData.at(5);
-    TripBuffering = StandartData.at(6);
-    ThrOpti = StandartData.at(7);
-    CUDA = StandartData.at(8);
-    DeleteProfile();
-    //sh();
+    if(StartSessionAndProfile()){
+        if (!Profile_Create() ||
+            !Profile_AttachToApplication("C:\\Users\\Артем\\Desktop\\СПЗ (Курсова)\\VideoCardControl\\build\\Desktop_x86_windows_msvc2019_pe_64bit-Release\\VideoCardControl"))
+        {
+            qDebug() << "[ERROR] Profile is not active!";
+        }
+        else {
+            if (Profile_Insert_All_Data()){
+                qDebug() << "Success!!!";
+            }
+            else {
+                qDebug() << "[ERROR] Data is not inserted!";
+            }
+        }
+    }
+    else {
+        qDebug() << "[CRITICAL ERROR] NVAPI is not initialized!";
+    }
 }
 
 CardMode::~CardMode()
 {
+    Profile_Delete();
+    NvAPI_DRS_DestroySession(hSession);
     delete ui;
 }
 
@@ -64,22 +44,75 @@ QString NvUnicodeToQString(const NvAPI_UnicodeString& src) {
     return QString::fromWCharArray(reinterpret_cast<const wchar_t*>(src));
 }
 
-void CardMode::AddVertSyncToProfile() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
+bool CardMode::Profile_Insert_All_Data(){
+
+    if (!Profile_AddParam(VERT_SYNC_ID) ||
+        !Profile_AddParam(ANT_MODE_ID)  ||
+        !Profile_AddParam(ANIS_FILT_ID) ||
+        !Profile_AddParam(TEXT_FILT_ID) ||
+        !Profile_AddParam(AMD_OCCUL_ID) ||
+        !Profile_AddParam(POW_MAN_ID)   ||
+        !Profile_AddParam(TRIP_BUFF_ID) ||
+        !Profile_AddParam(THR_OPTI_ID)  ||
+        !Profile_AddParam(CUDA_ID))
+    {
+        qDebug() << "Error with adding parameters to profile!";
+        return false;
+    }
+    else {
+        Profile_Insert_All_Vector();
+        if (!Profile_Check_Vector()){
+            qDebug() << "[Error] Some value in StandartData vector is equal to -1";
+            return false;
+        }
+        else {
+            VertSync = StandartData.at(0);
+            AntMode = StandartData.at(1);
+            AnisFiltering = StandartData.at(2);
+            TextFiltQuality = StandartData.at(3);
+            AmbOcculusion = StandartData.at(4);
+            PowManagMode = StandartData.at(5);
+            TripBuffering = StandartData.at(6);
+            ThrOpti = StandartData.at(7);
+            CUDA = StandartData.at(8);
+            return true;
+        }
+    }
+}
+
+bool CardMode::StartSessionAndProfile(){
+    if (NvAPI_Initialize() != NVAPI_OK) {
+        qDebug() << "Помилка ініціалізації NVAPI!";
+        return false;
+    }
 
     // Створення та завантаження сесії
     if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
         qDebug() << "Не вдалося створити сесію DRS.";
-        return;
+        return false;
     }
 
     if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
         qDebug() << "Не вдалося завантажити налаштування.";
         NvAPI_DRS_DestroySession(hSession);
-        return;
+        return false;
     }
+    return true;
+}
 
+void CardMode::Profile_Insert_All_Vector(){
+    StandartData = {Collect_ParamFromProfile(VERT_SYNC_ID)
+                  , Collect_ParamFromProfile(ANT_MODE_ID)
+                  , Collect_ParamFromProfile(ANIS_FILT_ID)
+                  , Collect_ParamFromProfile(TEXT_FILT_ID)
+                  , Collect_ParamFromProfile(AMD_OCCUL_ID)
+                  , Collect_ParamFromProfile(POW_MAN_ID)
+                  , Collect_ParamFromProfile(TRIP_BUFF_ID)
+                  , Collect_ParamFromProfile(THR_OPTI_ID)
+                  , Collect_ParamFromProfile(CUDA_ID)};
+}
+
+bool CardMode::Profile_AddParam(int id, int value){
     // Пошук профілю за назвою
     NvU16 profileNameBuffer[256];
     wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
@@ -87,45 +120,30 @@ void CardMode::AddVertSyncToProfile() {
     if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
         qDebug() << "Профіль" << profileName << "не знайдено!";
         NvAPI_DRS_DestroySession(hSession);
-        return;
+        return false;
     }
 
     // Додавання параметра VertSync
     NVDRS_SETTING setting;
     memset(&setting, 0, sizeof(setting));
     setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x00A879CF;  // ID для VSYNC
+    setting.settingId = id;
     setting.settingType = NVDRS_DWORD_TYPE;
-    setting.u32CurrentValue = 0x1; // 0x1 = Увімкнути V-Sync
+    setting.u32CurrentValue = value;
 
     if (NvAPI_DRS_SetSetting(hSession, hProfile, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося додати VertSync до профілю!";
+        qDebug() << "❌ Не вдалося додати " << id << " до профілю!";
+        return false;
     } else {
-        qDebug() << "✅ VertSync успішно додано до профілю:" << profileName;
-
+        qDebug() << id << " успішно додано до профілю:" << profileName;
     }
 
     // Збереження змін
     NvAPI_DRS_SaveSettings(hSession);
-    NvAPI_DRS_DestroySession(hSession);
+    return true;
 }
 
-void CardMode::AddAntialiasingModeToProfile() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося створити сесію DRS.";
-        return;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
+bool CardMode::Profile_AttachToApplication(const QString &appPath) {
     // Пошук профілю за назвою
     NvU16 profileNameBuffer[256];
     wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
@@ -133,368 +151,7 @@ void CardMode::AddAntialiasingModeToProfile() {
     if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
         qDebug() << "Профіль" << profileName << "не знайдено!";
         NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Додавання параметра Antialiasing Mode
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x10D773D2;  // ID для Antialiasing Mode
-    setting.settingType = NVDRS_DWORD_TYPE;
-    setting.u32CurrentValue = 0x2; // 0x2 = 2x мультисемплінг (можна змінити)
-
-    if (NvAPI_DRS_SetSetting(hSession, hProfile, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося додати Antialiasing Mode до профілю!";
-    } else {
-        qDebug() << "✅ Antialiasing Mode успішно додано до профілю:" << profileName;
-    }
-
-    // Збереження змін
-    NvAPI_DRS_SaveSettings(hSession);
-    NvAPI_DRS_DestroySession(hSession);
-}
-
-void CardMode::AddAnisotropicFilteringToProfile() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося створити сесію DRS.";
-        return;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Пошук профілю за назвою
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Додавання параметра анізотропної фільтрації
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x101E61A9;  // ID для Anisotropic Filtering
-    setting.settingType = NVDRS_DWORD_TYPE;
-    setting.u32CurrentValue = 0x4; // 0x4 = 4x анізотропна фільтрація (можна змінити)
-
-    if (NvAPI_DRS_SetSetting(hSession, hProfile, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося додати Anisotropic Filtering до профілю!";
-    } else {
-        qDebug() << "✅ Anisotropic Filtering успішно додано до профілю:" << profileName;
-    }
-
-    // Збереження змін
-    NvAPI_DRS_SaveSettings(hSession);
-    NvAPI_DRS_DestroySession(hSession);
-}
-
-void CardMode::AddTextureFilteringToProfile() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося створити сесію DRS.";
-        return;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Пошук профілю за назвою
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Додавання параметра Texture Filtering
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x00E73211;  // ID для Texture Filtering
-    setting.settingType = NVDRS_DWORD_TYPE;
-    setting.u32CurrentValue = 0x1; // 0x1 = Оптимізація згладжування текстур (можна змінити)
-
-    if (NvAPI_DRS_SetSetting(hSession, hProfile, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося додати Texture Filtering до профілю!";
-    } else {
-        qDebug() << "✅ Texture Filtering успішно додано до профілю:" << profileName;
-    }
-
-    // Збереження змін
-    NvAPI_DRS_SaveSettings(hSession);
-    NvAPI_DRS_DestroySession(hSession);
-}
-
-void CardMode::AddAmbientOcclusionToProfile() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося створити сесію DRS.";
-        return;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Пошук профілю за назвою
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Додавання параметра Ambient Occlusion
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x00667329;  // ID для Ambient Occlusion
-    setting.settingType = NVDRS_DWORD_TYPE;
-    setting.u32CurrentValue = 0x2; // 0x2 = Увімкнути AO (можна змінити)
-
-    if (NvAPI_DRS_SetSetting(hSession, hProfile, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося додати Ambient Occlusion до профілю!";
-    } else {
-        qDebug() << "✅ Ambient Occlusion успішно додано до профілю:" << profileName;
-    }
-
-    // Збереження змін
-    NvAPI_DRS_SaveSettings(hSession);
-    NvAPI_DRS_DestroySession(hSession);
-}
-
-void CardMode::AddPowerManagementModeToProfile() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося створити сесію DRS.";
-        return;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Пошук профілю за назвою
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Додавання параметра Power Management Mode
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x1057EB71;  // ID для Power Management Mode
-    setting.settingType = NVDRS_DWORD_TYPE;
-    setting.u32CurrentValue = 0x1; // 0x1 = Максимальна продуктивність (можна змінити)
-
-    if (NvAPI_DRS_SetSetting(hSession, hProfile, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося додати Power Management Mode до профілю!";
-    } else {
-        qDebug() << "✅ Power Management Mode успішно додано до профілю:" << profileName;
-    }
-
-    // Збереження змін
-    NvAPI_DRS_SaveSettings(hSession);
-    NvAPI_DRS_DestroySession(hSession);
-}
-
-void CardMode::AddTripleBufferingToProfile() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося створити сесію DRS.";
-        return;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Пошук профілю за назвою
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Додавання параметра Triple Buffering
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x20FDD1F9;  // ID для Triple Buffering
-    setting.settingType = NVDRS_DWORD_TYPE;
-    setting.u32CurrentValue = 0x1; // 0x1 = Увімкнути Triple Buffering
-
-    if (NvAPI_DRS_SetSetting(hSession, hProfile, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося додати Triple Buffering до профілю!";
-    } else {
-        qDebug() << "✅ Triple Buffering успішно додано до профілю:" << profileName;
-    }
-
-    // Збереження змін
-    NvAPI_DRS_SaveSettings(hSession);
-    NvAPI_DRS_DestroySession(hSession);
-}
-
-void CardMode::AddThreadedOptimizationToProfile() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося створити сесію DRS.";
-        return;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Пошук профілю за назвою
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Додавання параметра Threaded Optimization
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x20C1221E;  // ID для Threaded Optimization
-    setting.settingType = NVDRS_DWORD_TYPE;
-    setting.u32CurrentValue = 0x1; // 0x1 = Автоматичне увімкнення (можна змінити)
-
-    if (NvAPI_DRS_SetSetting(hSession, hProfile, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося додати Threaded Optimization до профілю!";
-    } else {
-        qDebug() << "✅ Threaded Optimization успішно додано до профілю:" << profileName;
-    }
-
-    // Збереження змін
-    NvAPI_DRS_SaveSettings(hSession);
-    NvAPI_DRS_DestroySession(hSession);
-}
-
-void CardMode::AddCUDAtoProfile() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося створити сесію DRS.";
-        return;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Пошук профілю за назвою
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Додавання параметра CUDA
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x10354FF8;  // ID для CUDA
-    setting.settingType = NVDRS_DWORD_TYPE;
-    setting.u32CurrentValue = 0x0; // 0x0 = Використовувати всі доступні GPU (можна змінити)
-
-    if (NvAPI_DRS_SetSetting(hSession, hProfile, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося додати CUDA до профілю!";
-    } else {
-        qDebug() << "✅ CUDA успішно додано до профілю:" << profileName;
-    }
-
-    // Збереження змін
-    NvAPI_DRS_SaveSettings(hSession);
-    NvAPI_DRS_DestroySession(hSession);
-}
-
-
-void CardMode::AttachApplicationToProfile(const QString &appPath) {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося створити сесію DRS.";
-        return;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Пошук профілю за назвою
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
+        return false;
     }
 
     // Створення застосунку в профілі
@@ -505,81 +162,17 @@ void CardMode::AttachApplicationToProfile(const QString &appPath) {
 
     if (NvAPI_DRS_CreateApplication(hSession, hProfile, &app) != NVAPI_OK) {
         qDebug() << "Не вдалося додати програму до профілю!";
+        return false;
     } else {
         qDebug() << "✅ Програму" << appPath << "успішно прив’язано до профілю" << profileName;
     }
 
     // Збереження змін
     NvAPI_DRS_SaveSettings(hSession);
-    NvAPI_DRS_DestroySession(hSession);
+    return true;
 }
 
-void CardMode::AddSettingToProfile() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося створити сесію DRS.";
-        return;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Пошук профілю за назвою
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
-
-    // Додавання налаштування V-Sync
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x1023d;  // ID налаштування V-Sync
-    setting.settingType = NVDRS_DWORD_TYPE;
-    setting.u32CurrentValue = 0x0; // 0x1 = Увімкнути V-Sync
-
-    if (NvAPI_DRS_SetSetting(hSession, hProfile, &setting) != NVAPI_OK) {
-        qDebug() << "Не вдалося додати налаштування до профілю!";
-    } else {
-        qDebug() << "Налаштування V-Sync успішно додане!";
-    }
-
-    // Збереження змін
-    NvAPI_DRS_SaveSettings(hSession);
-    NvAPI_DRS_DestroySession(hSession);
-}
-
-void CardMode::CreateProfile() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-
-    // Ініціалізація NVAPI
-    if (NvAPI_Initialize() != NVAPI_OK) {
-        qDebug() << "Помилка ініціалізації NVAPI!";
-        return;
-    }
-
-    // Створення сесії DRS
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося створити сесію DRS.";
-        return;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
+bool CardMode::Profile_Create() {
 
     // Створення нового профілю
     NVDRS_PROFILE newProfile;
@@ -590,13 +183,13 @@ void CardMode::CreateProfile() {
     if (NvAPI_DRS_CreateProfile(hSession, &newProfile, &hProfile) != NVAPI_OK) {
         qDebug() << "Не вдалося створити профіль.";
         NvAPI_DRS_DestroySession(hSession);
-        return;
+        return false;
     }
 
     qDebug() << "✅ Створено профіль:" << profileName;
 
     NvAPI_DRS_SaveSettings(hSession);
-    NvAPI_DRS_DestroySession(hSession);
+    return true;
 }
 
 void CardMode::ListProfileSettings() {
@@ -658,21 +251,7 @@ void CardMode::ListProfileSettings() {
     NvAPI_DRS_DestroySession(hSession);
 }
 
-void CardMode::DeleteProfile() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося створити сесію DRS.";
-        return;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return;
-    }
+bool CardMode::Profile_Delete() {
 
     // Пошук профілю за назвою
     NvU16 profileNameBuffer[256];
@@ -681,19 +260,20 @@ void CardMode::DeleteProfile() {
     if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
         qDebug() << "Профіль" << profileName << "не знайдено!";
         NvAPI_DRS_DestroySession(hSession);
-        return;
+        return false;
     }
 
     // Видалення профілю
     if (NvAPI_DRS_DeleteProfile(hSession, hProfile) != NVAPI_OK) {
         qDebug() << "Не вдалося видалити профіль.";
+        return false;
     } else {
         qDebug() << "Профіль" << profileName << "успішно видалений.";
     }
 
     // Збереження змін
     NvAPI_DRS_SaveSettings(hSession);
-    NvAPI_DRS_DestroySession(hSession);
+    return true;
 }
 
 void CardMode::find(){
@@ -720,17 +300,17 @@ void CardMode::find(){
     NvAPI_DRS_DestroySession(hSession);
 }
 
-bool CardMode::UpdateAllData(){
+bool CardMode::Profile_Update_All_Data(){
 
-    if (UpdateVertSync() ||
-        UpdateAntMode() ||
-        UpdateAnisFiltering() ||
-        UpdateTextFiltQuality() ||
-        UpdateAmbOcculusion() ||
-        UpdatePowManagMode() ||
-        UpdateTripBuffering() ||
-        UpdateThrOpti() ||
-        UpdateCUDA())
+    if (UpdateData(VertSync, VERT_SYNC_ID) ||
+        UpdateData(AntMode, ANT_MODE_ID) ||
+        UpdateData(AnisFiltering, ANIS_FILT_ID) ||
+        UpdateData(TextFiltQuality, TEXT_FILT_ID) ||
+        UpdateData(AmbOcculusion, AMD_OCCUL_ID) ||
+        UpdateData(PowManagMode, POW_MAN_ID) ||
+        UpdateData(TripBuffering, TRIP_BUFF_ID) ||
+        UpdateData(ThrOpti, THR_OPTI_ID) ||
+        UpdateData(CUDA, CUDA_ID))
     {
         return true;
     }
@@ -739,7 +319,7 @@ bool CardMode::UpdateAllData(){
     }
 }
 
-bool CardMode::SheckAllDataFromNVAPI(){
+bool CardMode::Profile_Check_Vector(){
 
     if (StandartData.at(0) == -1 ||
         StandartData.at(1) == -1 ||
@@ -756,9 +336,9 @@ bool CardMode::SheckAllDataFromNVAPI(){
     return true;
 }
 
-bool CardMode::ResetAllData(){
+bool CardMode::Profile_Reset_All_Data(){
 
-    if (!SheckAllDataFromNVAPI()){
+    if (!Profile_Check_Vector()){
         return false;
     }
     else {
@@ -789,7 +369,7 @@ bool CardMode::SetVertSync(int num){
     return true;
 }
 bool CardMode::SetAntMode(int num){
-    if (num < 0 || num > 2){
+    if (num < 0 || num > 15){
         qDebug() << "AntMode was not seted:" << num;
         return false;
     }
@@ -797,7 +377,7 @@ bool CardMode::SetAntMode(int num){
     return true;
 }
 bool CardMode::SetAnisFiltering(int num){
-    if (num < 0 || num > 1){
+    if (num < 0 || num > 4){
         qDebug() << "AnisFiltering was not seted:" << num;
         return false;
     }
@@ -805,7 +385,7 @@ bool CardMode::SetAnisFiltering(int num){
     return true;
 }
 bool CardMode::SetTextFiltQuality(int num){
-    if (num < 0 || num > 3){
+    if (num < 0 || num > 4){
         qDebug() << "TextFiltQuality was not seted:" << num;
         return false;
     }
@@ -813,7 +393,7 @@ bool CardMode::SetTextFiltQuality(int num){
     return true;
 }
 bool CardMode::SetAmbOcculusion(int num){
-    if (num < 0 || num > 2){
+    if (num < 0 || num > 3){
         qDebug() << "AmbOcculusion was not seted:" << num;
         return false;
     }
@@ -853,50 +433,42 @@ bool CardMode::SetCUDA(int num){
     return true;
 }
 
-bool CardMode::UpdateVertSync(){
-    return true;
-}
-bool CardMode::UpdateAntMode(){
-    return true;
-}
-bool CardMode::UpdateAnisFiltering(){
-    return true;
-}
-bool CardMode::UpdateTextFiltQuality(){
-    return true;
-}
-bool CardMode::UpdateAmbOcculusion(){
-    return true;
-}
-bool CardMode::UpdatePowManagMode(){
-    return true;
-}
-bool CardMode::UpdateTripBuffering(){
-    return true;
-}
-bool CardMode::UpdateThrOpti(){
-    return true;
-}
-bool CardMode::UpdateCUDA(){
-    return true;
-}
+bool CardMode::UpdateData(int value, int id){
+    // Пошук профілю
+    NvU16 profileNameBuffer[256];
+    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
 
-int CardMode::CollectVertSync() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-    NvU32 vertSyncValue = -1; // Значення за замовчуванням (-1 = не знайдено)
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося створити сесію DRS.";
-        return vertSyncValue;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося завантажити налаштування.";
+    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
+        qDebug() << "❌ Профіль" << profileName << "не знайдено!";
         NvAPI_DRS_DestroySession(hSession);
-        return vertSyncValue;
+        return false;
     }
+
+    // Отримання налаштування
+    NVDRS_SETTING setting;
+    memset(&setting, 0, sizeof(setting));
+    setting.version = NVDRS_SETTING_VER;
+    setting.settingId = id;
+
+    if (NvAPI_DRS_GetSetting(hSession, hProfile, setting.settingId, &setting) != NVAPI_OK) {
+        qDebug() << "❌ Не вдалося оновити параметр Vertical Sync!";
+        return false;
+    } else {
+        if (value != -1) {
+            setting.u32CurrentValue = value;
+            qDebug() << id << " (змінено) у профілі " << profileName << ": " << setting.u32CurrentValue;
+        }
+        else { // VertSync == -1
+            qDebug() << "Erorr value: VertSync == -1!";
+            return false;
+        }
+    }
+    NvAPI_DRS_SaveSettings(hSession);
+    return true;
+}
+
+int CardMode::Collect_ParamFromProfile(int id){
+    NvU32 value = -1; // Значення за замовчуванням (-1 = не знайдено)
 
     // Пошук профілю
     NvU16 profileNameBuffer[256];
@@ -905,384 +477,41 @@ int CardMode::CollectVertSync() {
     if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
         qDebug() << "❌ Профіль" << profileName << "не знайдено!";
         NvAPI_DRS_DestroySession(hSession);
-        return vertSyncValue;
+        return value;
     }
 
-    // Отримання налаштування Vertical Sync
+    // Отримання налаштування id
     NVDRS_SETTING setting;
     memset(&setting, 0, sizeof(setting));
     setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x00A879CF;  // ID для Vertical Sync
+    setting.settingId = id;
 
     if (NvAPI_DRS_GetSetting(hSession, hProfile, setting.settingId, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося отримати параметр Vertical Sync!";
+        qDebug() << "Не вдалося отримати параметр:" << id;
     } else {
-        vertSyncValue = setting.u32CurrentValue; // Отримуємо значення
-        qDebug() << "✅ Vertical Sync у профілі " << profileName << ": " << vertSyncValue;
+        value = setting.u32CurrentValue; // Отримуємо значення
+        qDebug() << id << " у профілі " << profileName << ": " << value;
     }
 
-    NvAPI_DRS_DestroySession(hSession);
-    return vertSyncValue;
+    return value;
+}
+
+void CardMode::on_pushButton_clicked()
+{
+    // Отримуємо значення profileName
+
+    Profile_Reset_All_Data();
+
+    // Оновлюємо інтерфейс
 }
 
 
-int CardMode::CollectAntMode() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-    NvU32 antialiasingValue = -1; // Значення за замовчуванням (-1 = не знайдено)
+void CardMode::on_pushButton_2_clicked()
+{
+    // Отримуємо значення profileName
+    // Отримуємо значення від користувача (параметри)
 
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося створити сесію DRS.";
-        return antialiasingValue;
-    }
+    Profile_Update_All_Data();
 
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return antialiasingValue;
-    }
-
-    // Пошук профілю
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "❌ Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return antialiasingValue;
-    }
-
-    // Отримання налаштування Antialiasing Mode
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x10D773D2;  // ID для Antialiasing Mode
-
-    if (NvAPI_DRS_GetSetting(hSession, hProfile, setting.settingId, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося отримати параметр Antialiasing Mode!";
-    } else {
-        antialiasingValue = setting.u32CurrentValue; // Отримуємо значення
-        qDebug() << "✅ Antialiasing Mode у профілі " << profileName << ": " << antialiasingValue;
-    }
-
-    NvAPI_DRS_DestroySession(hSession);
-    return antialiasingValue;
 }
-
-
-int CardMode::CollectAnisFiltering() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-    NvU32 anisotropicFilteringValue = -1; // Значення за замовчуванням (-1 = не знайдено)
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося створити сесію DRS.";
-        return anisotropicFilteringValue;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return anisotropicFilteringValue;
-    }
-
-    // Пошук профілю
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "❌ Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return anisotropicFilteringValue;
-    }
-
-    // Отримання налаштування Anisotropic Filtering
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x101E61A9;  // ID для Anisotropic Filtering
-
-    if (NvAPI_DRS_GetSetting(hSession, hProfile, setting.settingId, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося отримати параметр Anisotropic Filtering!";
-    } else {
-        anisotropicFilteringValue = setting.u32CurrentValue; // Отримуємо значення
-        qDebug() << "✅ Anisotropic Filtering у профілі " << profileName << ": " << anisotropicFilteringValue;
-    }
-
-    NvAPI_DRS_DestroySession(hSession);
-    return anisotropicFilteringValue;
-}
-
-
-int CardMode::CollectTextFiltQuality() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-    NvU32 textureFilteringValue = -1; // Значення за замовчуванням (-1 = не знайдено)
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося створити сесію DRS.";
-        return textureFilteringValue;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return textureFilteringValue;
-    }
-
-    // Пошук профілю
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "❌ Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return textureFilteringValue;
-    }
-
-    // Отримання налаштування Texture Filtering
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x00E73211;  // ID для Texture Filtering
-
-    if (NvAPI_DRS_GetSetting(hSession, hProfile, setting.settingId, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося отримати параметр Texture Filtering!";
-    } else {
-        textureFilteringValue = setting.u32CurrentValue; // Отримуємо значення
-        qDebug() << "✅ Texture Filtering у профілі " << profileName << ": " << textureFilteringValue;
-    }
-
-    NvAPI_DRS_DestroySession(hSession);
-    return textureFilteringValue;
-}
-
-
-int CardMode::CollectAmbOcculusion() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-    NvU32 ambientOcclusionValue = -1; // Значення за замовчуванням (-1 = не знайдено)
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося створити сесію DRS.";
-        return ambientOcclusionValue;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return ambientOcclusionValue;
-    }
-
-    // Пошук профілю
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "❌ Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return ambientOcclusionValue;
-    }
-
-    // Отримання налаштування Ambient Occlusion
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x00667329;  // ID для Ambient Occlusion
-
-    if (NvAPI_DRS_GetSetting(hSession, hProfile, setting.settingId, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося отримати параметр Ambient Occlusion!";
-    } else {
-        ambientOcclusionValue = setting.u32CurrentValue; // Отримуємо значення
-        qDebug() << "✅ Ambient Occlusion у профілі " << profileName << ": " << ambientOcclusionValue;
-    }
-
-    NvAPI_DRS_DestroySession(hSession);
-    return ambientOcclusionValue;
-}
-
-
-int CardMode::CollectPowManagMode() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-    NvU32 powerManagementValue = -1; // Значення за замовчуванням (-1 = не знайдено)
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося створити сесію DRS.";
-        return powerManagementValue;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return powerManagementValue;
-    }
-
-    // Пошук профілю
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "❌ Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return powerManagementValue;
-    }
-
-    // Отримання налаштування Power Management Mode
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x1057EB71;  // ID для Power Management Mode
-
-    if (NvAPI_DRS_GetSetting(hSession, hProfile, setting.settingId, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося отримати параметр Power Management Mode!";
-    } else {
-        powerManagementValue = setting.u32CurrentValue; // Отримуємо значення
-        qDebug() << "✅ Power Management Mode у профілі " << profileName << ": " << powerManagementValue;
-    }
-
-    NvAPI_DRS_DestroySession(hSession);
-    return powerManagementValue;
-}
-
-
-int CardMode::CollectTripBuffering() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-    NvU32 tripleBufferingValue = -1; // Значення за замовчуванням (-1 = не знайдено)
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося створити сесію DRS.";
-        return tripleBufferingValue;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return tripleBufferingValue;
-    }
-
-    // Пошук профілю
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "❌ Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return tripleBufferingValue;
-    }
-
-    // Отримання налаштування Triple Buffering
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x20FDD1F9;  // ID для Triple Buffering
-
-    if (NvAPI_DRS_GetSetting(hSession, hProfile, setting.settingId, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося отримати параметр Triple Buffering!";
-    } else {
-        tripleBufferingValue = setting.u32CurrentValue; // Отримуємо значення
-        qDebug() << "✅ Triple Buffering у профілі " << profileName << ": " << tripleBufferingValue;
-    }
-
-    NvAPI_DRS_DestroySession(hSession);
-    return tripleBufferingValue;
-}
-
-
-int CardMode::CollectThrOpti() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-    NvU32 threadedOptimizationValue = -1; // Значення за замовчуванням (-1 = не знайдено)
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося створити сесію DRS.";
-        return threadedOptimizationValue;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return threadedOptimizationValue;
-    }
-
-    // Пошук профілю
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "❌ Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return threadedOptimizationValue;
-    }
-
-    // Отримання налаштування Threaded Optimization
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x20C1221E;  // ID для Threaded Optimization
-
-    if (NvAPI_DRS_GetSetting(hSession, hProfile, setting.settingId, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося отримати параметр Threaded Optimization!";
-    } else {
-        threadedOptimizationValue = setting.u32CurrentValue; // Отримуємо значення
-        qDebug() << "✅ Threaded Optimization у профілі " << profileName << ": " << threadedOptimizationValue;
-    }
-
-    NvAPI_DRS_DestroySession(hSession);
-    return threadedOptimizationValue;
-}
-
-
-int CardMode::CollectCUDA() {
-    NvDRSSessionHandle hSession;
-    NvDRSProfileHandle hProfile;
-    NvU32 cudaValue = -1; // Значення за замовчуванням (-1 = не знайдено)
-
-    // Створення та завантаження сесії
-    if (NvAPI_DRS_CreateSession(&hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося створити сесію DRS.";
-        return cudaValue;
-    }
-
-    if (NvAPI_DRS_LoadSettings(hSession) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося завантажити налаштування.";
-        NvAPI_DRS_DestroySession(hSession);
-        return cudaValue;
-    }
-
-    // Пошук профілю
-    NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
-
-    if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "❌ Профіль" << profileName << "не знайдено!";
-        NvAPI_DRS_DestroySession(hSession);
-        return cudaValue;
-    }
-
-    // Отримання налаштування CUDA
-    NVDRS_SETTING setting;
-    memset(&setting, 0, sizeof(setting));
-    setting.version = NVDRS_SETTING_VER;
-    setting.settingId = 0x10354FF8;  // ID для CUDA
-
-    if (NvAPI_DRS_GetSetting(hSession, hProfile, setting.settingId, &setting) != NVAPI_OK) {
-        qDebug() << "❌ Не вдалося отримати параметр CUDA!";
-    } else {
-        cudaValue = setting.u32CurrentValue; // Отримуємо значення
-        qDebug() << "✅ CUDA у профілі " << profileName << ": " << cudaValue;
-    }
-
-    NvAPI_DRS_DestroySession(hSession);
-    return cudaValue;
-}
-
 

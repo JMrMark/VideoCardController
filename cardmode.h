@@ -1,4 +1,12 @@
-#define VERT_SYNC_ID 0x10DE0023
+#define VERT_SYNC_ID 0x00A879CF
+#define ANT_MODE_ID 0x10D773D2
+#define ANIS_FILT_ID 0x101E61A9
+#define TEXT_FILT_ID 0x00E73211
+#define AMD_OCCUL_ID 0x00667329
+#define POW_MAN_ID 0x1057EB71
+#define TRIP_BUFF_ID 0x20FDD1F9
+#define THR_OPTI_ID 0x20C1221E
+#define CUDA_ID 0x10354FF8
 
 #ifndef CARDMODE_H
 #define CARDMODE_H
@@ -6,6 +14,7 @@
 #include <QMainWindow>
 #include <QVector>
 #include "nvapi.h"
+#include <NvApiDriverSettings.h>
 
 namespace Ui {
 class CardMode;
@@ -19,50 +28,60 @@ public:
     explicit CardMode(QWidget *parent = nullptr);
     ~CardMode();
 
-    // Функція, яка відповідає за скидання змінних до стандартних значень
-    // Отримуємо данні з QVector<int> StandartData та вносимо їх у змінні
-    bool ResetAllData();
-
     // Вносить усі данні у віконий інтерфейс
     // Використувує змінні, а не вектор
     bool ShowAllData();
 
+    // Ініціалізує сесію та профіль
+    bool StartSessionAndProfile();
+
+    // ---- [ Profile functions ] ----
+
+    // Додаємо усі можливі параметри до профілю та вносимо їх у вектор
+    bool Profile_Insert_All_Data();
+
     // Обновлює усі параметри, змінюючи їх у відеокарті
-    bool UpdateAllData();
+    bool Profile_Update_All_Data();
+
+    // Вносимо параметри у вектор
+    void Profile_Insert_All_Vector();
+
+    // Перевіряємо чи немає некоректних значень
+    bool Profile_Check_Vector();
+
+    // Створюємо профіль
+    bool Profile_Create();
+
+    // Прив'язуємо профіль до програми
+    bool Profile_AttachToApplication(const QString &appPath);
+
+    // Видаляємо профіль
+    bool Profile_Delete();
+
+    // Додаємо відповідні параметри до профілю
+    bool Profile_AddParam(int id, int value = 0);
+
+    // Функція, яка відповідає за скидання змінних до стандартних значень
+    // Отримуємо данні з QVector<int> StandartData та вносимо їх у змінні
+    bool Profile_Reset_All_Data();
+
+    // ---- [ Profile functions ] ----
 
     void find();
-    void CreateProfile();
     void ListProfileSettings();
-    void DeleteProfile();
-    void AddSettingToProfile();
-    void AttachApplicationToProfile(const QString &appPath);
 
-    // Add to our profile settings (+)
-    void AddVertSyncToProfile();
-    void AddAntialiasingModeToProfile();
-    void AddAnisotropicFilteringToProfile();
-    void AddTextureFilteringToProfile();
-    void AddAmbientOcclusionToProfile();
-    void AddPowerManagementModeToProfile();
-    void AddTripleBufferingToProfile();
-    void AddThreadedOptimizationToProfile();
-    void AddCUDAtoProfile();
+private slots:
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
     Ui::CardMode *ui;
+    NvDRSSessionHandle hSession;
+    NvDRSProfileHandle hProfile;
 
-    // Перевіряємо данні у QVector<int> StandartData.
-    bool SheckAllDataFromNVAPI();
-
-    // Отримуємо дані з NVAPI (+)
-    int CollectVertSync();
-    int CollectAntMode();
-    int CollectAnisFiltering();
-    int CollectTextFiltQuality();
-    int CollectAmbOcculusion();
-    int CollectPowManagMode();
-    int CollectTripBuffering();
-    int CollectThrOpti();
-    int CollectCUDA();
+    // Отримуємо дані з NVAPI
+    int Collect_ParamFromProfile(int id);
 
     // Вносимо данні у змінні
     bool SetVertSync(int num);
@@ -75,52 +94,59 @@ private:
     bool SetThrOpti(int num);
     bool SetCUDA(int num);
 
-    // Оновлюємо данні у відеокарті, використовуючи змінні
-    bool UpdateVertSync();
-    bool UpdateAntMode();
-    bool UpdateAnisFiltering();
-    bool UpdateTextFiltQuality();
-    bool UpdateAmbOcculusion();
-    bool UpdatePowManagMode();
-    bool UpdateTripBuffering();
-    bool UpdateThrOpti();
-    bool UpdateCUDA();
+    bool UpdateData(int value, int id);
 
     QString profileName = "MyProf";
 
-    // Vertical Sync
+    // Vertical Sync (+)
     // 0 = Вимкнено
     // 1 = Увімкнено
     // 2 = Залежить від 3D-програми
     int VertSync;
 
-    // Antialiasing Mode
-    // 0 = Вимк.
-    // 1 = 2х
-    // 2 = 4х
-    // 3 = 8х
-    // 4 = 16х
+    // Antialiasing Mode (+)
+    // 0  = Вимк.
+    // 1  = Автоиатично
+    // 2  = 2х (MSAA)
+    // 3  = 4х (MSAA)
+    // 4  = 8х (MSAA)
+    // 5  = 16x (MSAA)
+    // 6  = Класичний режим згладжування (SSAA)
+    // 7  = 2x (SSAA)
+    // 8  = 4x (SSAA)
+    // 9  = 8x (SSAA)
+    // 10 = 16x (SSAA)
+    // 11 = FXAA
+    // 12 = TXAA
+    // 13 = MFAA
+    // 14 = Hybrid (MSAA & SSAA)
+    // 15 = Залежить від програми
     int AntMode;
 
-    // Anisotropic Filtering
-    // 0 = Керування програмою
-    // 1 = Примусово 2x, 4x, 8x, 16x
+    // Anisotropic Filtering (+)
+    // 0 = Вимкнено
+    // 1 = 2х
+    // 2 = 4x
+    // 3 = 8x
+    // 4 = 16x
     int AnisFiltering;
 
-    // Texture Filtering - Quality
-    // 0 = Висока продуктивність
-    // 1 = Продуктивність
-    // 2 = Якість
-    // 3 = Висока якість
+    // Texture Filtering - Quality (+)
+    // 0 = Автоматично
+    // 1 = Висока продуктивність
+    // 2 = Продуктивність
+    // 3 = Якість
+    // 4 = Висока якість
     int TextFiltQuality;
 
-    // Ambient Occlusion
+    // Ambient Occlusion (+)
     // 0 = Вимкнено
-    // 1 = Увімкнено
-    // 2 = Висока якість
+    // 1 = Примусово
+    // 2 = Автоматично
+    // 3 = Висока якість
     int AmbOcculusion;
 
-    // Power Management Mode
+    // Power Management Mode (+)
     // 0 = Адаптивний
     // 1 = Максимальна продуктивність
     int PowManagMode;
@@ -130,10 +156,10 @@ private:
     // 1 = Вимкнено
     int TripBuffering;
 
-    // Threaded Optimization
-    // 0 = Авто
-    // 1 = Увімкнено
-    // 2 = Вимкнено
+    // Threaded Optimization (+)
+    // 0 = Вимкнено
+    // 1 = Автоматично
+    // 2 = Увімкнено
     int ThrOpti;
 
     // CUDA - GPUs

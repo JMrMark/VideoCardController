@@ -263,6 +263,7 @@ C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/build/Desk
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/cardinfo.h \
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/cardlogger.h \
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/cardmode.h \
+  C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/NvApiDriverSettings.h \
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/nvapi.h \
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/nvapi_lite_common.h \
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/nvapi_lite_d3dext.h \

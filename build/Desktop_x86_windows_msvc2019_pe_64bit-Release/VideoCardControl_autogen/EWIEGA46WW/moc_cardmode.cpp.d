@@ -154,6 +154,7 @@ C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/build/Desk
   C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qtwidgetsexports.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qtwidgetsglobal.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtWidgets/qwidget.h \
+  C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/NvApiDriverSettings.h \
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/nvapi.h \
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/nvapi_lite_common.h \
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/nvapi_lite_d3dext.h \
