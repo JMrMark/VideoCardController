@@ -3,6 +3,7 @@
 #include "nvapi.h"
 #include <QMessageBox>
 #include <NvApiDriverSettings.h>
+#include <QComboBox>
 
 
 CardMode::CardMode(QWidget *parent)
@@ -12,6 +13,7 @@ CardMode::CardMode(QWidget *parent)
     ui->setupUi(this);
 
     setWindowTitle("Video Card Settings");
+    ui->profile_label->setText("Обраний профіль: Профіль 1");
 
     if(StartSessionAndProfile()){
         if (!Profile_Create() ||
@@ -35,7 +37,19 @@ CardMode::CardMode(QWidget *parent)
 
 CardMode::~CardMode()
 {
-    Profile_Delete();
+
+    if (profileCheck[0]){
+        Profile_Delete("Profile_1");
+    }
+
+    if (profileCheck[1]){
+        Profile_Delete("Profile_2");
+    }
+
+    if (profileCheck[2]){
+        Profile_Delete("Profile_3");
+    }
+
     NvAPI_DRS_DestroySession(hSession);
     delete ui;
 }
@@ -251,14 +265,14 @@ void CardMode::ListProfileSettings() {
     NvAPI_DRS_DestroySession(hSession);
 }
 
-bool CardMode::Profile_Delete() {
+bool CardMode::Profile_Delete(QString prof) {
 
     // Пошук профілю за назвою
     NvU16 profileNameBuffer[256];
-    wcscpy_s((wchar_t*)profileNameBuffer, 256, profileName.toStdWString().c_str());
+    wcscpy_s((wchar_t*)profileNameBuffer, 256, prof.toStdWString().c_str());
 
     if (NvAPI_DRS_FindProfileByName(hSession, profileNameBuffer, &hProfile) != NVAPI_OK) {
-        qDebug() << "Профіль" << profileName << "не знайдено!";
+        qDebug() << "Профіль" << prof << "не знайдено!";
         NvAPI_DRS_DestroySession(hSession);
         return false;
     }
@@ -268,7 +282,7 @@ bool CardMode::Profile_Delete() {
         qDebug() << "Не вдалося видалити профіль.";
         return false;
     } else {
-        qDebug() << "Профіль" << profileName << "успішно видалений.";
+        qDebug() << "Профіль" << prof << "успішно видалений.";
     }
 
     // Збереження змін
@@ -302,14 +316,14 @@ void CardMode::find(){
 
 bool CardMode::Profile_Update_All_Data(){
 
-    if (UpdateData(VertSync, VERT_SYNC_ID) ||
-        UpdateData(AntMode, ANT_MODE_ID) ||
-        UpdateData(AnisFiltering, ANIS_FILT_ID) ||
-        UpdateData(TextFiltQuality, TEXT_FILT_ID) ||
-        UpdateData(AmbOcculusion, AMD_OCCUL_ID) ||
-        UpdateData(PowManagMode, POW_MAN_ID) ||
-        UpdateData(TripBuffering, TRIP_BUFF_ID) ||
-        UpdateData(ThrOpti, THR_OPTI_ID) ||
+    if (UpdateData(VertSync, VERT_SYNC_ID) &&
+        UpdateData(AntMode, ANT_MODE_ID) &&
+        UpdateData(AnisFiltering, ANIS_FILT_ID) &&
+        UpdateData(TextFiltQuality, TEXT_FILT_ID) &&
+        UpdateData(AmbOcculusion, AMD_OCCUL_ID) &&
+        UpdateData(PowManagMode, POW_MAN_ID) &&
+        UpdateData(TripBuffering, TRIP_BUFF_ID) &&
+        UpdateData(ThrOpti, THR_OPTI_ID) &&
         UpdateData(CUDA, CUDA_ID))
     {
         return true;
@@ -342,16 +356,17 @@ bool CardMode::Profile_Reset_All_Data(){
         return false;
     }
     else {
-        if (SetVertSync(StandartData.at(0)) ||
-            SetAntMode(StandartData.at(1)) ||
-            SetAnisFiltering(StandartData.at(2)) ||
-            SetTextFiltQuality(StandartData.at(3)) ||
-            SetAmbOcculusion(StandartData.at(4)) ||
-            SetPowManagMode(StandartData.at(5)) ||
-            SetTripBuffering(StandartData.at(6)) ||
-            SetThrOpti(StandartData.at(7)) ||
+        if (SetVertSync(StandartData.at(0)) &&
+            SetAntMode(StandartData.at(1)) &&
+            SetAnisFiltering(StandartData.at(2)) &&
+            SetTextFiltQuality(StandartData.at(3)) &&
+            SetAmbOcculusion(StandartData.at(4)) &&
+            SetPowManagMode(StandartData.at(5)) &&
+            SetTripBuffering(StandartData.at(6)) &&
+            SetThrOpti(StandartData.at(7)) &&
             SetCUDA(StandartData.at(8)))
         {
+            qDebug() << "Reset data is success!";
             return true;
         }
         else {
@@ -456,7 +471,7 @@ bool CardMode::UpdateData(int value, int id){
     } else {
         if (value != -1) {
             setting.u32CurrentValue = value;
-            qDebug() << id << " (змінено) у профілі " << profileName << ": " << setting.u32CurrentValue;
+            qDebug() << id << "\t(змінено) у профілі\t" << profileName << ":\t" << setting.u32CurrentValue;
         }
         else { // VertSync == -1
             qDebug() << "Erorr value: VertSync == -1!";
@@ -501,17 +516,61 @@ void CardMode::on_pushButton_clicked()
     // Отримуємо значення profileName
 
     Profile_Reset_All_Data();
+    Profile_Update_All_Data();
 
     // Оновлюємо інтерфейс
+    ui->VertSync_box->setCurrentIndex(VertSync);
+    ui->AntMode_box->setCurrentIndex(AntMode);
+    ui->AnisFiltering_box->setCurrentIndex(AnisFiltering);
+    ui->TextFiltQuality_box->setCurrentIndex(TextFiltQuality);
+    ui->AmbOcculusion_box->setCurrentIndex(AmbOcculusion);
+    ui->PowManagMode_box->setCurrentIndex(PowManagMode);
+    ui->TripBuffering_box->setCurrentIndex(TripBuffering);
+    ui->ThrOpti_box->setCurrentIndex(ThrOpti);
+    ui->CUDA_box->setCurrentIndex(CUDA);
 }
 
 
 void CardMode::on_pushButton_2_clicked()
 {
     // Отримуємо значення profileName
+    VertSync = ui->VertSync_box->currentIndex();
+    AntMode = ui->AntMode_box->currentIndex();
+    AnisFiltering = ui->AnisFiltering_box->currentIndex();
+    TextFiltQuality = ui->TextFiltQuality_box->currentIndex();
+    AmbOcculusion = ui->AmbOcculusion_box->currentIndex();
+    PowManagMode = ui->PowManagMode_box->currentIndex();
+    TripBuffering = ui->TripBuffering_box->currentIndex();
+    ThrOpti = ui->ThrOpti_box->currentIndex();
+    CUDA = ui->CUDA_box->currentIndex();
+
+
     // Отримуємо значення від користувача (параметри)
 
     Profile_Update_All_Data();
 
+}
+
+
+void CardMode::on_profile_button_clicked()
+{
+    int index = ui->profile_box->currentIndex();
+    profileName = "Profile_" + QString::number(index + 1);
+
+    if (index == 0){
+        ui->profile_label->setText("Обраний профіль: Профіль 1");
+    }
+    else if (index == 1){
+        ui->profile_label->setText("Обраний профіль: Профіль 2");
+        profileCheck[1] = true;
+        Profile_Create();
+        Profile_Insert_All_Data();
+    }
+    else {
+        ui->profile_label->setText("Обраний профіль: Профіль 3");
+        profileCheck[2] = true;
+        Profile_Create();
+        Profile_Insert_All_Data();
+    }
 }
 

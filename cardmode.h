@@ -56,7 +56,7 @@ public:
     bool Profile_AttachToApplication(const QString &appPath);
 
     // Видаляємо профіль
-    bool Profile_Delete();
+    bool Profile_Delete(QString prof);
 
     // Додаємо відповідні параметри до профілю
     bool Profile_AddParam(int id, int value = 0);
@@ -74,6 +74,8 @@ private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
+
+    void on_profile_button_clicked();
 
 private:
     Ui::CardMode *ui;
@@ -96,7 +98,9 @@ private:
 
     bool UpdateData(int value, int id);
 
-    QString profileName = "MyProf";
+    QString profileName = "Profile_1";
+
+    QVector<bool> profileCheck = {true, false, false};
 
     // Vertical Sync (+)
     // 0 = Вимкнено

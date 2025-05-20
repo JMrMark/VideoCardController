@@ -170,11 +170,11 @@ QPushButton:pressed {
                 <x>0</x>
                 <y>0</y>
                 <width>640</width>
-                <height>498</height>
+                <height>578</height>
                </rect>
               </property>
-              <layout class="QGridLayout" name="gridLayout_4" rowstretch="0,0,0,0" rowminimumheight="0,0,0,0">
-               <item row="1" column="0">
+              <layout class="QGridLayout" name="gridLayout_4" rowstretch="0,0,0,0,0,0" rowminimumheight="0,0,0,0,0,0">
+               <item row="3" column="0">
                 <layout class="QVBoxLayout" name="verticalLayout_2">
                  <item>
                   <widget class="QGroupBox" name="groupBox_2">
@@ -224,7 +224,7 @@ QPushButton:pressed {
                        </widget>
                       </item>
                       <item>
-                       <widget class="QComboBox" name="comboBox">
+                       <widget class="QComboBox" name="VertSync_box">
                         <item>
                          <property name="text">
                           <string>Вимкнуто</string>
@@ -261,7 +261,7 @@ QPushButton:pressed {
                        </widget>
                       </item>
                       <item>
-                       <widget class="QComboBox" name="comboBox_4">
+                       <widget class="QComboBox" name="AntMode_box">
                         <item>
                          <property name="text">
                           <string>Вимкнуто</string>
@@ -269,22 +269,77 @@ QPushButton:pressed {
                         </item>
                         <item>
                          <property name="text">
-                          <string>2х</string>
+                          <string>Автоматично</string>
                          </property>
                         </item>
                         <item>
                          <property name="text">
-                          <string>4х</string>
+                          <string>2х (MSAA)</string>
                          </property>
                         </item>
                         <item>
                          <property name="text">
-                          <string>8х</string>
+                          <string>4х (MSAA)</string>
                          </property>
                         </item>
                         <item>
                          <property name="text">
-                          <string>16х</string>
+                          <string>8х (MSAA)</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>16х (MSAA)</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>SSAA</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>2x (SSAA)</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>4x (SSAA)</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>8x (SSAA)</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>16x (SSAA)</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>FXAA</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>TXAA</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>MFAA</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Hybrid (MSAA &amp; SSAA)</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Залежить від програми</string>
                          </property>
                         </item>
                        </widget>
@@ -308,15 +363,30 @@ QPushButton:pressed {
                        </widget>
                       </item>
                       <item>
-                       <widget class="QComboBox" name="comboBox_3">
+                       <widget class="QComboBox" name="AnisFiltering_box">
                         <item>
                          <property name="text">
-                          <string>Керування програмою</string>
+                          <string>Вимкнено</string>
                          </property>
                         </item>
                         <item>
                          <property name="text">
-                          <string>Примусово 2x, 4x, 8x, 16x</string>
+                          <string>2x</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>4x</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>8x</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>16x</string>
                          </property>
                         </item>
                        </widget>
@@ -340,7 +410,12 @@ QPushButton:pressed {
                        </widget>
                       </item>
                       <item>
-                       <widget class="QComboBox" name="comboBox_10">
+                       <widget class="QComboBox" name="TextFiltQuality_box">
+                        <item>
+                         <property name="text">
+                          <string>Автоматично</string>
+                         </property>
+                        </item>
                         <item>
                          <property name="text">
                           <string>Висока продуктивність</string>
@@ -382,7 +457,7 @@ QPushButton:pressed {
                        </widget>
                       </item>
                       <item>
-                       <widget class="QComboBox" name="comboBox_5">
+                       <widget class="QComboBox" name="AmbOcculusion_box">
                         <item>
                          <property name="text">
                           <string>Вимкнено</string>
@@ -390,7 +465,12 @@ QPushButton:pressed {
                         </item>
                         <item>
                          <property name="text">
-                          <string>Увімкнено</string>
+                          <string>Примусово</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Автоматично</string>
                          </property>
                         </item>
                         <item>
@@ -419,7 +499,7 @@ QPushButton:pressed {
                        </widget>
                       </item>
                       <item>
-                       <widget class="QComboBox" name="comboBox_6">
+                       <widget class="QComboBox" name="PowManagMode_box">
                         <property name="iconSize">
                          <size>
                           <width>16</width>
@@ -457,7 +537,7 @@ QPushButton:pressed {
                        </widget>
                       </item>
                       <item>
-                       <widget class="QComboBox" name="comboBox_7">
+                       <widget class="QComboBox" name="TripBuffering_box">
                         <item>
                          <property name="text">
                           <string>Увімкнено</string>
@@ -489,20 +569,20 @@ QPushButton:pressed {
                        </widget>
                       </item>
                       <item>
-                       <widget class="QComboBox" name="comboBox_8">
+                       <widget class="QComboBox" name="ThrOpti_box">
                         <item>
                          <property name="text">
-                          <string>Авто</string>
+                          <string>Вимкнено</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Автоматично</string>
                          </property>
                         </item>
                         <item>
                          <property name="text">
                           <string>Увімкнено</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>Вимкнено</string>
                          </property>
                         </item>
                        </widget>
@@ -526,7 +606,7 @@ QPushButton:pressed {
                        </widget>
                       </item>
                       <item>
-                       <widget class="QComboBox" name="comboBox_9">
+                       <widget class="QComboBox" name="CUDA_box">
                         <item>
                          <property name="text">
                           <string>Усі</string>
@@ -546,7 +626,70 @@ QPushButton:pressed {
                  </item>
                 </layout>
                </item>
-               <item row="3" column="0">
+               <item row="0" column="0">
+                <layout class="QGridLayout" name="gridLayout_6" columnstretch="5,2,0">
+                 <item row="2" column="1">
+                  <widget class="QPushButton" name="profile_button">
+                   <property name="text">
+                    <string>Обрати профіль</string>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>16</width>
+                     <height>16</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QLabel" name="profile_label">
+                   <property name="text">
+                    <string>Обраний профіль:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QComboBox" name="profile_box">
+                   <item>
+                    <property name="text">
+                     <string>Профіль 1</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Профіль 2</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Профіль 3</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_6">
+                   <property name="text">
+                    <string>Оберіть профіль, який будете модифікувати</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <spacer name="horizontalSpacer_6">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item row="5" column="0">
                 <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="1,1,1">
                  <item>
                   <spacer name="horizontalSpacer_4">
@@ -577,8 +720,17 @@ QPushButton:pressed {
                  </item>
                 </layout>
                </item>
-               <item row="0" column="0">
+               <item row="2" column="0">
                 <layout class="QGridLayout" name="gridLayout_5" columnstretch="2,0">
+                 <item row="1" column="0">
+                  <widget class="QComboBox" name="comboBox_11">
+                   <item>
+                    <property name="text">
+                     <string>NVIDIA GeForce MX450</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
                  <item row="1" column="1">
                   <spacer name="horizontalSpacer_3">
                    <property name="orientation">
@@ -610,15 +762,6 @@ QPushButton:pressed {
                    <property name="text">
                     <string>Графічний бажаний процесор</string>
                    </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QComboBox" name="comboBox_11">
-                   <item>
-                    <property name="text">
-                     <string>NVIDIA GeForce MX450</string>
-                    </property>
-                   </item>
                   </widget>
                  </item>
                 </layout>
