@@ -16,8 +16,7 @@ CardMode::CardMode(QWidget *parent)
     ui->profile_label->setText("Обраний профіль: Профіль 1");
 
     if(StartSessionAndProfile()){
-        if (!Profile_Create() ||
-            !Profile_AttachToApplication("C:\\Users\\Артем\\Desktop\\СПЗ (Курсова)\\VideoCardControl\\build\\Desktop_x86_windows_msvc2019_pe_64bit-Release\\VideoCardControl"))
+        if (!Profile_Create())
         {
             qDebug() << "[ERROR] Profile is not active!";
         }
@@ -598,5 +597,44 @@ void CardMode::on_profile_button_clicked()
         Profile_Insert_All_Data();
     }
     qDebug() << "Обрано профіль: " << profileName;
+    QVector<QString> result = Profile_GetConnectedApp();
 }
 
+
+void CardMode::on_connectToApp_clicked()
+{
+
+    int gpuIndex;
+    if (profileName == "Profile_1"){
+        gpuIndex = 0;
+    }
+    else if (profileName == "Profile_2"){
+        gpuIndex = 1;
+    }
+    else if (profileName == "Profile_3"){
+        gpuIndex = 2;
+    }
+    else {
+        return;
+    }
+
+    if (!linkingWindowON[gpuIndex]) {
+        linkingWindowON[gpuIndex] = new linkingWindow(profileName);
+        linkingWindowON[gpuIndex]->setAttribute(Qt::WA_DeleteOnClose);
+
+        connect(linkingWindowON[gpuIndex], &linkingWindow::destroyed, this, [=]() {
+            linkingWindowON[gpuIndex] = nullptr;
+        });
+
+        linkingWindowON[gpuIndex]->show();
+    } else {
+        linkingWindowON[gpuIndex]->raise();
+        linkingWindowON[gpuIndex]->activateWindow();
+    }
+}
+
+QVector<QString> CardMode::Profile_GetConnectedApp() {
+    QVector<QString> appNames; // Вектор для збереження назв програм
+
+    return appNames;
+}

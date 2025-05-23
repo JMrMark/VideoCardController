@@ -16,6 +16,7 @@
 #include "nvapi.h"
 #include <NvApiDriverSettings.h>
 #include "databasecollector.h"
+#include "linkingwindow.h"
 
 namespace Ui {
 class CardMode;
@@ -66,6 +67,8 @@ public:
     // Отримуємо данні з QVector<int> StandartData та вносимо їх у змінні
     bool Profile_Reset_All_Data();
 
+    QVector<QString> Profile_GetConnectedApp();
+
     // ---- [ Profile functions ] ----
 
     void find();
@@ -78,12 +81,16 @@ private slots:
 
     void on_profile_button_clicked();
 
+    void on_connectToApp_clicked();
+
 private:
     Ui::CardMode *ui;
     NvDRSSessionHandle hSession;
     NvDRSProfileHandle hProfile;
 
     DataBaseCollector db;
+
+    linkingWindow* linkingWindowON[3] = {nullptr, nullptr, nullptr};
 
     // Отримуємо дані з NVAPI
     int Collect_ParamFromProfile(int id);

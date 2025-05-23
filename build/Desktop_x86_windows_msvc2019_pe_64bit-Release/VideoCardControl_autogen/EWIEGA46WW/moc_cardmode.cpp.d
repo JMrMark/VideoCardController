@@ -1,5 +1,6 @@
 C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/EWIEGA46WW/moc_cardmode.cpp: C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/cardmode.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/QDebug \
+  C:/Qt/6.8.0/msvc2022_64/include/QtCore/QString \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/QVector \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/q20functional.h \
   C:/Qt/6.8.0/msvc2022_64/include/QtCore/q20iterator.h \
@@ -174,4 +175,5 @@ C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/build/Desk
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/nvapi_lite_salstart.h \
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/nvapi_lite_sli.h \
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/nvapi_lite_stereo.h \
-  C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/nvapi_lite_surround.h
+  C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/nvapi_lite_surround.h \
+  C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/linkingwindow.h

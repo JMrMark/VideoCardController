@@ -568,6 +568,8 @@ VideoCardControl_autogen/timestamp: \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/source/NvApiDriverSettings.c \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/graphwindow.cpp \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/graphwindow.h \
+	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/linkingwindow.cpp \
+	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/linkingwindow.h \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/main.cpp \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/mainwindow.cpp \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/mainwindow.h \
@@ -577,5 +579,6 @@ VideoCardControl_autogen/timestamp: \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/cardlogger.ui \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/cardmode.ui \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/graphwindow.ui \
+	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/linkingwindow.ui \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/mainwindow.ui \
 	C:/Qt/Tools/CMake_64/bin/cmake.exe

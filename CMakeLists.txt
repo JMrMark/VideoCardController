@@ -29,6 +29,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         cardmode.h cardmode.cpp cardmode.ui
         cardlogger.h cardlogger.cpp cardlogger.ui
         databasecollector.h databasecollector.cpp
+        linkingwindow.h linkingwindow.cpp linkingwindow.ui
 
 
 

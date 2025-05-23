@@ -168,12 +168,58 @@ QPushButton:pressed {
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
+                <y>-120</y>
                 <width>640</width>
                 <height>578</height>
                </rect>
               </property>
-              <layout class="QGridLayout" name="gridLayout_4" rowstretch="0,0,0,0,0,0" rowminimumheight="0,0,0,0,0,0">
+              <layout class="QGridLayout" name="gridLayout_4" rowstretch="0,0,0,0,0,0">
+               <item row="2" column="0">
+                <layout class="QGridLayout" name="gridLayout_5" columnstretch="2,0">
+                 <item row="1" column="0">
+                  <widget class="QComboBox" name="comboBox_11">
+                   <item>
+                    <property name="text">
+                     <string>NVIDIA GeForce MX450</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <spacer name="horizontalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="0" column="1">
+                  <spacer name="horizontalSpacer_5">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_24">
+                   <property name="text">
+                    <string>Графічний бажаний процесор</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
                <item row="3" column="0">
                 <layout class="QVBoxLayout" name="verticalLayout_2">
                  <item>
@@ -626,6 +672,44 @@ QPushButton:pressed {
                  </item>
                 </layout>
                </item>
+               <item row="5" column="0">
+                <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="1,1,1,1">
+                 <item>
+                  <spacer name="horizontalSpacer_4">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="connectToApp">
+                   <property name="text">
+                    <string>Прив'язати</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_2">
+                   <property name="text">
+                    <string>Застосувати</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton">
+                   <property name="text">
+                    <string>Скинути</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout_6" columnstretch="5,2,0">
                  <item row="2" column="1">
@@ -686,83 +770,6 @@ QPushButton:pressed {
                     </size>
                    </property>
                   </spacer>
-                 </item>
-                </layout>
-               </item>
-               <item row="5" column="0">
-                <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="1,1,1">
-                 <item>
-                  <spacer name="horizontalSpacer_4">
-                   <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="pushButton_2">
-                   <property name="text">
-                    <string>Застосувати</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="pushButton">
-                   <property name="text">
-                    <string>Скинути</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item row="2" column="0">
-                <layout class="QGridLayout" name="gridLayout_5" columnstretch="2,0">
-                 <item row="1" column="0">
-                  <widget class="QComboBox" name="comboBox_11">
-                   <item>
-                    <property name="text">
-                     <string>NVIDIA GeForce MX450</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <spacer name="horizontalSpacer_3">
-                   <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item row="0" column="1">
-                  <spacer name="horizontalSpacer_5">
-                   <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_24">
-                   <property name="text">
-                    <string>Графічний бажаний процесор</string>
-                   </property>
-                  </widget>
                  </item>
                 </layout>
                </item>
