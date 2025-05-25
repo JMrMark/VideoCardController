@@ -176,4 +176,5 @@ C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/build/Desk
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/nvapi_lite_sli.h \
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/nvapi_lite_stereo.h \
   C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/include/nvapi_lite_surround.h \
-  C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/linkingwindow.h
+  C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/linkingwindow.h \
+  C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/profilemanager.h

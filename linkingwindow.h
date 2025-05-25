@@ -29,6 +29,9 @@ public:
 
     QString Application_GetName(const QString &path);
 
+    void Interface_Make_Red();
+    void Interface_Make_Green(const int &index);
+
 private slots:
     void on_button_profileCheck_clicked();
 

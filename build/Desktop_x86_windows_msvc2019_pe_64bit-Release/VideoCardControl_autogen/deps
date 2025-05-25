@@ -573,6 +573,8 @@ VideoCardControl_autogen/timestamp: \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/main.cpp \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/mainwindow.cpp \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/mainwindow.h \
+	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/profilemanager.cpp \
+	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/profilemanager.h \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/videocardcollector.cpp \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/videocardcollector.h \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/cardinfo.ui \
@@ -581,4 +583,5 @@ VideoCardControl_autogen/timestamp: \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/graphwindow.ui \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/linkingwindow.ui \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/mainwindow.ui \
+	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/profilemanager.ui \
 	C:/Qt/Tools/CMake_64/bin/cmake.exe

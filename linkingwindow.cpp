@@ -14,11 +14,62 @@ linkingWindow::linkingWindow(QString profile, QWidget *parent)
     SetProfile();
 
     Application_AddAllAvaliable();
+
+    Interface_Make_Red();
 }
 
 linkingWindow::~linkingWindow()
 {
     delete ui;
+}
+
+void linkingWindow::Interface_Make_Red(){
+
+    QString redStyle = R"(
+        QGroupBox {
+            border: 1px solid #a63a3a;
+            border-radius: 6px;
+            margin-top: 6px;
+            padding: 6px;
+        }
+
+        QGroupBox::title {
+            subcontrol-origin: margin;
+            subcontrol-position: top left;
+            padding: 0 6px;
+            color: #cccccc;
+            background-color: #2b2b2b;
+        }
+    )";
+
+    ui->groupBox_5->setStyleSheet(redStyle);
+    ui->groupBox_6->setStyleSheet(redStyle);
+}
+
+void linkingWindow::Interface_Make_Green(const int &index){
+    QString greenStyle = R"(
+        QGroupBox {
+            border: 1px solid #3f8f3c;
+            border-radius: 6px;
+            margin-top: 6px;
+            padding: 6px;
+        }
+
+        QGroupBox::title {
+            subcontrol-origin: margin;
+            subcontrol-position: top left;
+            padding: 0 6px;
+            color: #cccccc;
+            background-color: #2b2b2b;
+        }
+    )";
+
+    if (index == 0){
+        ui->groupBox_5->setStyleSheet(greenStyle);
+    }
+    else {
+        ui->groupBox_6->setStyleSheet(greenStyle);
+    }
 }
 
 void linkingWindow::SetProfile(){
@@ -48,6 +99,7 @@ void linkingWindow::on_button_profileCheck_clicked()
     ui->label_CUDA->setText(Param_GetName(8));
 
     VerFic[0] = true;
+    Interface_Make_Green(0);
 }
 
 bool linkingWindow::Profile_AttachToApplication(const QString &appPath) {
@@ -122,12 +174,14 @@ void linkingWindow::on_button_AppCheck_clicked()
             application = AppPaths.at(index);
             ui->label_programName->setText(Application_GetName(application));
             VerFic[1] = true;
+            Interface_Make_Green(1);
         }
     }
     else {
         application = ui->lineEdit_pathToApp->text();
         ui->label_programName->setText(Application_GetName(application));
         VerFic[1] = true;
+        Interface_Make_Green(1);
     }
 }
 
@@ -139,8 +193,13 @@ void linkingWindow::on_pushButton_2_clicked()
             QMessageBox::critical(this, "Помилка", "⚠️ Профіль не було під'єднано до програми");
         }
         else {
-            QMessageBox::information(this, "Успіх", "Профіль було успішно під'єднано до програми");
-            this->deleteLater();
+            if (!db.saveApplicationData(profile, Application_GetName(application))){
+                QMessageBox::critical(this, "Помилка", "⚠️ Проблема з базою даних");
+            }
+            else {
+                QMessageBox::information(this, "Успіх", "Профіль було успішно під'єднано до програми");
+                this->deleteLater();
+            }
         }
     }
     else if (!VerFic.at(0)){

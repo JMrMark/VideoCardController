@@ -19,10 +19,22 @@ public:
 
     QVector<int> loadProfileData(const QString &profileName);
 
+
+
+    bool saveApplicationData(const QString &profileName, const QString &application);
+
+    QVector<QString> loadApplicationData(const QString &profileName);
+
+    void clearApplicationData();
+
 private:
     QSqlDatabase db; // Об'єкт для роботи з БД
-    void createTable(); // Функція для створення таблиці
 
+    // Таблиця з профілями та їх параметрами
+    void createTableProfile();
+
+    // Таблиця з профілями та їх програмами
+    void createTableApplication();
 };
 
 #endif // DATABASECOLLECTOR_H

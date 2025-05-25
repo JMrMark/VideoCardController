@@ -5,3 +5,4 @@
 #include "EWIEGA46WW/moc_graphwindow.cpp"
 #include "EWIEGA46WW/moc_linkingwindow.cpp"
 #include "EWIEGA46WW/moc_mainwindow.cpp"
+#include "EWIEGA46WW/moc_profilemanager.cpp"

@@ -13,7 +13,8 @@ DataBaseCollector::DataBaseCollector() {
     qDebug() << "[DB] База даних успішно відкрита!";
 
     // Викликаємо функцію створення таблиці, якщо вона ще не існує
-    createTable();
+    createTableProfile();
+    createTableApplication();
 }
 
 DataBaseCollector::~DataBaseCollector() {
@@ -21,7 +22,98 @@ DataBaseCollector::~DataBaseCollector() {
     qDebug() << "[DB] База даних закрита!";
 }
 
-void DataBaseCollector::createTable() {
+void DataBaseCollector::clearApplicationData(){
+    QSqlDatabase db = QSqlDatabase::database(); // Отримуємо поточне з'єднання
+
+    if (!db.isOpen()) {
+        qDebug() << "❌ База даних не відкрита! Спочатку потрібно підключитися.";
+        return;
+    }
+
+    QSqlQuery query;
+    if (!query.exec("DELETE FROM ApplicationBD")) {
+        qDebug() << "❌ Помилка очищення таблиці ApplicationBD:" << query.lastError().text();
+    } else {
+        qDebug() << "✅ Таблиця ApplicationBD успішно очищена!";
+    }
+}
+
+void DataBaseCollector::createTableApplication(){
+    QSqlQuery query;
+
+    QString createTableQuery =
+        "CREATE TABLE IF NOT EXISTS ApplicationBD ("
+        "ProfileS TEXT(16),"
+        "AppNameS TEXT(32));";
+
+    if (!query.exec(createTableQuery)) {
+        qDebug() << "[DB] Помилка створення таблиці ApplicationBD:" << query.lastError().text();
+    } else {
+        qDebug() << "[DB] Таблиця ApplicationBD успішно створена!";
+    }
+}
+
+bool DataBaseCollector::saveApplicationData(const QString &profileName, const QString &application){
+    if (profileName.isEmpty() || application.isEmpty()) {
+        qDebug() << "⚠️ Помилка: порожнє ім'я профілю або програми!";
+        return false;
+    }
+
+    QSqlQuery query;
+
+    // Спочатку перевіряємо, чи вже існує запис
+    query.prepare("SELECT COUNT(*) FROM ApplicationBD WHERE ProfileS = :profileName AND AppNameS = :application");
+    query.bindValue(":profileName", profileName);
+    query.bindValue(":application", application);
+
+    if (!query.exec()) {
+        qDebug() << "❌ Помилка перевірки існування запису:" << query.lastError().text();
+        return false;
+    }
+
+    query.next();
+    int recordCount = query.value(0).toInt();
+
+    if (recordCount > 0) {
+        qDebug() << "✅ Запис вже існує, оновлення не потрібно.";
+        return true; // Запис уже є, нічого змінювати не потрібно
+    } else {
+        // Додаємо новий запис
+        query.prepare("INSERT INTO ApplicationBD (ProfileS, AppNameS) VALUES (:profileName, :application)");
+        query.bindValue(":profileName", profileName);
+        query.bindValue(":application", application);
+
+        if (!query.exec()) {
+            qDebug() << "❌ Помилка додавання запису:" << query.lastError().text();
+            return false;
+        }
+
+        qDebug() << "✅ Додано новий запис: [" << profileName << "] ->" << application;
+        return true;
+    }
+}
+
+QVector<QString> DataBaseCollector::loadApplicationData(const QString &profileName){
+    QVector<QString> appNames; // Вектор для збереження назв програм
+
+    QSqlQuery query;
+    query.prepare("SELECT AppNameS FROM ApplicationBD WHERE ProfileS = :profileName");
+    query.bindValue(":profileName", profileName);
+
+    if (!query.exec()) {
+        qDebug() << "❌ Помилка завантаження програм для профілю" << profileName << ":" << query.lastError().text();
+        return appNames; // Повертаємо порожній вектор у разі помилки
+    }
+
+    while (query.next()) {
+        appNames.append(query.value(0).toString()); // Додаємо назву програми у вектор
+    }
+
+    qDebug() << "✅ Завантажено програми для" << profileName << ":" << appNames;
+    return appNames;
+}
+
+void DataBaseCollector::createTableProfile() {
     QSqlQuery query;
 
     QString createTableQuery =

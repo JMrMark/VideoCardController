@@ -49,6 +49,8 @@ CardMode::~CardMode()
         Profile_Delete("Profile_3");
     }
 
+    db.clearApplicationData();
+
     NvAPI_DRS_DestroySession(hSession);
     delete ui;
 }
@@ -638,3 +640,36 @@ QVector<QString> CardMode::Profile_GetConnectedApp() {
 
     return appNames;
 }
+
+// Детальніше
+void CardMode::on_pushButton_3_clicked()
+{
+    int gpuIndex;
+    if (profileName == "Profile_1"){
+        gpuIndex = 0;
+    }
+    else if (profileName == "Profile_2"){
+        gpuIndex = 1;
+    }
+    else if (profileName == "Profile_3"){
+        gpuIndex = 2;
+    }
+    else {
+        return;
+    }
+
+    if (!profileManager[gpuIndex]) {
+        profileManager[gpuIndex] = new ProfileManager(profileName);
+        profileManager[gpuIndex]->setAttribute(Qt::WA_DeleteOnClose);
+
+        connect(profileManager[gpuIndex], &ProfileManager::destroyed, this, [=]() {
+            profileManager[gpuIndex] = nullptr;
+        });
+
+        profileManager[gpuIndex]->show();
+    } else {
+        profileManager[gpuIndex]->raise();
+        profileManager[gpuIndex]->activateWindow();
+    }
+}
+

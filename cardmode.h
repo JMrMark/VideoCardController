@@ -17,6 +17,7 @@
 #include <NvApiDriverSettings.h>
 #include "databasecollector.h"
 #include "linkingwindow.h"
+#include "profilemanager.h"
 
 namespace Ui {
 class CardMode;
@@ -83,6 +84,8 @@ private slots:
 
     void on_connectToApp_clicked();
 
+    void on_pushButton_3_clicked();
+
 private:
     Ui::CardMode *ui;
     NvDRSSessionHandle hSession;
@@ -91,6 +94,7 @@ private:
     DataBaseCollector db;
 
     linkingWindow* linkingWindowON[3] = {nullptr, nullptr, nullptr};
+    ProfileManager* profileManager[3] = {nullptr, nullptr, nullptr};
 
     // Отримуємо дані з NVAPI
     int Collect_ParamFromProfile(int id);
