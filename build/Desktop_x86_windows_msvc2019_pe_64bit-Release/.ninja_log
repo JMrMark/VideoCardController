@@ -1,66 +1,82 @@
 # ninja log v5
-7	128	7686719994590166	VideoCardControl_autogen/timestamp	2036fb3be51c1675
-7	128	7686719994590166	VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
-154	4018	7699202197426234	CMakeFiles/VideoCardControl.dir/videocardcollector.cpp.obj	38351241df55c7e
-7	128	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/timestamp	2036fb3be51c1675
+9	184	7686719994590166	VideoCardControl_autogen/timestamp	2036fb3be51c1675
+213	4126	7699625413950821	CMakeFiles/VideoCardControl.dir/videocardcollector.cpp.obj	38351241df55c7e
+9	184	7686719994590166	VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
 754	1195	7694599783349799	CMakeFiles/VideoCardControl.dir/app_manifest.rc.res	50547d649fa184f9
-7	128	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
-158	4306	7699202201019219	CMakeFiles/VideoCardControl.dir/graphwindow.cpp.obj	14210952224d9fec
-6702	6834	7699202226359382	VideoCardControl.exe	b610cd751eb334c7
-162	4474	7699202202781390	CMakeFiles/VideoCardControl.dir/cardlogger.cpp.obj	46ca26d2d518547d
-147	4996	7699202208046503	CMakeFiles/VideoCardControl.dir/main.cpp.obj	3848290ee294131a
-139	5240	7699202210497306	CMakeFiles/VideoCardControl.dir/mainwindow.cpp.obj	32db32267b181351
-143	4983	7699202207876514	CMakeFiles/VideoCardControl.dir/cardinfo.cpp.obj	f781d9ad19d5b310
-3743	6702	7699202225119164	CMakeFiles/VideoCardControl.dir/VideoCardControl_autogen/mocs_compilation.cpp.obj	efa04e2cf345f733
-150	5902	7699202217061614	CMakeFiles/VideoCardControl.dir/cardmode.cpp.obj	c7dabb035c302710
-165	5527	7699202213307296	CMakeFiles/VideoCardControl.dir/linkingwindow.cpp.obj	19ffb6618dfffb8e
-169	3742	7699202195136240	CMakeFiles/VideoCardControl.dir/databasecollector.cpp.obj	8488bf230eb12ad4
-174	4376	7699202201709217	CMakeFiles/VideoCardControl.dir/profilemanager.cpp.obj	e4192e47158d2b22
-5	117	7686719994590166	VideoCardControl_autogen/timestamp	2036fb3be51c1675
-5	117	7686719994590166	VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
-5	117	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/timestamp	2036fb3be51c1675
-5	117	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
-143	3214	7699202774882754	CMakeFiles/VideoCardControl.dir/databasecollector.cpp.obj	8488bf230eb12ad4
-137	3501	7699202777916296	CMakeFiles/VideoCardControl.dir/videocardcollector.cpp.obj	38351241df55c7e
-152	3936	7699202782270722	CMakeFiles/VideoCardControl.dir/profilemanager.cpp.obj	e4192e47158d2b22
-149	4473	7699202787673969	CMakeFiles/VideoCardControl.dir/cardlogger.cpp.obj	46ca26d2d518547d
-126	4711	7699202789977034	CMakeFiles/VideoCardControl.dir/cardinfo.cpp.obj	f781d9ad19d5b310
-140	4742	7699202790327067	CMakeFiles/VideoCardControl.dir/graphwindow.cpp.obj	14210952224d9fec
-129	4770	7699202790497083	CMakeFiles/VideoCardControl.dir/main.cpp.obj	3848290ee294131a
-131	4948	7699202792445311	CMakeFiles/VideoCardControl.dir/mainwindow.cpp.obj	32db32267b181351
-146	5272	7699202795653332	CMakeFiles/VideoCardControl.dir/linkingwindow.cpp.obj	19ffb6618dfffb8e
-134	5825	7699202801191259	CMakeFiles/VideoCardControl.dir/cardmode.cpp.obj	c7dabb035c302710
-3215	6340	7699202806395659	CMakeFiles/VideoCardControl.dir/VideoCardControl_autogen/mocs_compilation.cpp.obj	efa04e2cf345f733
-6341	6475	7699202807654214	VideoCardControl.exe	b610cd751eb334c7
-5	141	7686719994590166	VideoCardControl_autogen/timestamp	2036fb3be51c1675
-5	141	7686719994590166	VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
-5	141	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/timestamp	2036fb3be51c1675
-5	141	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
-179	4294	7699203350760587	CMakeFiles/VideoCardControl.dir/databasecollector.cpp.obj	8488bf230eb12ad4
-171	4666	7699203354640556	CMakeFiles/VideoCardControl.dir/videocardcollector.cpp.obj	38351241df55c7e
-168	4701	7699203354930569	CMakeFiles/VideoCardControl.dir/graphwindow.cpp.obj	14210952224d9fec
-185	4752	7699203355260551	CMakeFiles/VideoCardControl.dir/profilemanager.cpp.obj	e4192e47158d2b22
-182	5259	7699203360437001	CMakeFiles/VideoCardControl.dir/cardlogger.cpp.obj	46ca26d2d518547d
-158	5312	7699203361207066	CMakeFiles/VideoCardControl.dir/main.cpp.obj	3848290ee294131a
-154	5650	7699203364457057	CMakeFiles/VideoCardControl.dir/mainwindow.cpp.obj	32db32267b181351
-161	6045	7699203368556379	CMakeFiles/VideoCardControl.dir/cardinfo.cpp.obj	f781d9ad19d5b310
-175	6328	7699203371364478	CMakeFiles/VideoCardControl.dir/linkingwindow.cpp.obj	19ffb6618dfffb8e
-164	6630	7699203374375417	CMakeFiles/VideoCardControl.dir/cardmode.cpp.obj	c7dabb035c302710
-4295	7622	7699203384336808	CMakeFiles/VideoCardControl.dir/VideoCardControl_autogen/mocs_compilation.cpp.obj	efa04e2cf345f733
-7623	7770	7699203385792653	VideoCardControl.exe	b610cd751eb334c7
-5	135	7686719994590166	VideoCardControl_autogen/timestamp	2036fb3be51c1675
-5	135	7686719994590166	VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
-5	135	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/timestamp	2036fb3be51c1675
-5	135	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
-177	4218	7699206035863004	CMakeFiles/VideoCardControl.dir/databasecollector.cpp.obj	8488bf230eb12ad4
-163	4442	7699206037869531	CMakeFiles/VideoCardControl.dir/videocardcollector.cpp.obj	38351241df55c7e
-166	4875	7699206042726865	CMakeFiles/VideoCardControl.dir/graphwindow.cpp.obj	14210952224d9fec
-173	5389	7699206047593525	CMakeFiles/VideoCardControl.dir/cardlogger.cpp.obj	46ca26d2d518547d
-150	5452	7699206048375568	CMakeFiles/VideoCardControl.dir/cardinfo.cpp.obj	f781d9ad19d5b310
-180	5714	7699206050532616	CMakeFiles/VideoCardControl.dir/profilemanager.cpp.obj	e4192e47158d2b22
-154	6128	7699206055459227	CMakeFiles/VideoCardControl.dir/main.cpp.obj	3848290ee294131a
-157	6437	7699206058251047	CMakeFiles/VideoCardControl.dir/mainwindow.cpp.obj	32db32267b181351
-170	7468	7699206068817045	CMakeFiles/VideoCardControl.dir/linkingwindow.cpp.obj	19ffb6618dfffb8e
-160	8015	7699206074257800	CMakeFiles/VideoCardControl.dir/cardmode.cpp.obj	c7dabb035c302710
-4219	8968	7699206083868834	CMakeFiles/VideoCardControl.dir/VideoCardControl_autogen/mocs_compilation.cpp.obj	efa04e2cf345f733
-8968	9142	7699206085532498	VideoCardControl.exe	b610cd751eb334c7
+9	184	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/timestamp	2036fb3be51c1675
+9	184	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
+217	5110	7699625423356548	CMakeFiles/VideoCardControl.dir/graphwindow.cpp.obj	14210952224d9fec
+8389	8603	7699625458857511	VideoCardControl.exe	b610cd751eb334c7
+224	5236	7699625425140111	CMakeFiles/VideoCardControl.dir/cardlogger.cpp.obj	46ca26d2d518547d
+202	5376	7699625426358143	CMakeFiles/VideoCardControl.dir/main.cpp.obj	3848290ee294131a
+205	5905	7699625431894240	CMakeFiles/VideoCardControl.dir/mainwindow.cpp.obj	32db32267b181351
+197	5996	7699625432807044	CMakeFiles/VideoCardControl.dir/cardinfo.cpp.obj	f781d9ad19d5b310
+3826	8389	7699625456795705	CMakeFiles/VideoCardControl.dir/VideoCardControl_autogen/mocs_compilation.cpp.obj	efa04e2cf345f733
+228	6250	7699625435335363	CMakeFiles/VideoCardControl.dir/linkingwindow.cpp.obj	19ffb6618dfffb8e
+209	6880	7699625441651480	CMakeFiles/VideoCardControl.dir/cardmode.cpp.obj	c7dabb035c302710
+220	3826	7699625410860949	CMakeFiles/VideoCardControl.dir/databasecollector.cpp.obj	8488bf230eb12ad4
+232	5233	7699625424817159	CMakeFiles/VideoCardControl.dir/profilemanager.cpp.obj	e4192e47158d2b22
+6	153	7686719994590166	VideoCardControl_autogen/timestamp	2036fb3be51c1675
+6	153	7686719994590166	VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
+6	153	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/timestamp	2036fb3be51c1675
+6	153	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
+190	3594	7699626842621481	CMakeFiles/VideoCardControl.dir/databasecollector.cpp.obj	8488bf230eb12ad4
+186	3880	7699626845152864	CMakeFiles/VideoCardControl.dir/videocardcollector.cpp.obj	38351241df55c7e
+201	4634	7699626852912519	CMakeFiles/VideoCardControl.dir/profilemanager.cpp.obj	e4192e47158d2b22
+183	4666	7699626853626479	CMakeFiles/VideoCardControl.dir/graphwindow.cpp.obj	14210952224d9fec
+197	4994	7699626856934577	CMakeFiles/VideoCardControl.dir/cardlogger.cpp.obj	46ca26d2d518547d
+172	5073	7699626857757004	CMakeFiles/VideoCardControl.dir/main.cpp.obj	3848290ee294131a
+168	5278	7699626859778402	CMakeFiles/VideoCardControl.dir/cardinfo.cpp.obj	f781d9ad19d5b310
+175	5526	7699626862285600	CMakeFiles/VideoCardControl.dir/mainwindow.cpp.obj	32db32267b181351
+193	5784	7699626864837466	CMakeFiles/VideoCardControl.dir/linkingwindow.cpp.obj	19ffb6618dfffb8e
+179	6152	7699626868458107	CMakeFiles/VideoCardControl.dir/cardmode.cpp.obj	c7dabb035c302710
+3595	7301	7699626880061615	CMakeFiles/VideoCardControl.dir/VideoCardControl_autogen/mocs_compilation.cpp.obj	efa04e2cf345f733
+7302	7469	7699626881656911	VideoCardControl.exe	b610cd751eb334c7
+7	156	7686719994590166	VideoCardControl_autogen/timestamp	2036fb3be51c1675
+7	156	7686719994590166	VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
+7	156	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/timestamp	2036fb3be51c1675
+7	156	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
+193	3534	7699628025935455	CMakeFiles/VideoCardControl.dir/databasecollector.cpp.obj	8488bf230eb12ad4
+179	3691	7699628028212116	CMakeFiles/VideoCardControl.dir/videocardcollector.cpp.obj	38351241df55c7e
+190	4416	7699628035378088	CMakeFiles/VideoCardControl.dir/cardlogger.cpp.obj	46ca26d2d518547d
+201	4472	7699628035948091	CMakeFiles/VideoCardControl.dir/profilemanager.cpp.obj	e4192e47158d2b22
+183	4815	7699628039349572	CMakeFiles/VideoCardControl.dir/graphwindow.cpp.obj	14210952224d9fec
+172	5027	7699628041097816	CMakeFiles/VideoCardControl.dir/cardinfo.cpp.obj	f781d9ad19d5b310
+168	5089	7699628042169137	CMakeFiles/VideoCardControl.dir/main.cpp.obj	3848290ee294131a
+175	5259	7699628043936005	CMakeFiles/VideoCardControl.dir/mainwindow.cpp.obj	32db32267b181351
+197	5849	7699628049804373	CMakeFiles/VideoCardControl.dir/linkingwindow.cpp.obj	19ffb6618dfffb8e
+186	6433	7699628055601191	CMakeFiles/VideoCardControl.dir/cardmode.cpp.obj	c7dabb035c302710
+3535	7138	7699628062742462	CMakeFiles/VideoCardControl.dir/VideoCardControl_autogen/mocs_compilation.cpp.obj	efa04e2cf345f733
+7139	7370	7699628064935999	VideoCardControl.exe	b610cd751eb334c7
+7	163	7686719994590166	VideoCardControl_autogen/timestamp	2036fb3be51c1675
+7	163	7686719994590166	VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
+7	163	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/timestamp	2036fb3be51c1675
+7	163	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
+197	3447	7699959339551159	CMakeFiles/VideoCardControl.dir/videocardcollector.cpp.obj	38351241df55c7e
+226	3644	7699959341526452	CMakeFiles/VideoCardControl.dir/databasecollector.cpp.obj	8488bf230eb12ad4
+203	4510	7699959349944908	CMakeFiles/VideoCardControl.dir/graphwindow.cpp.obj	14210952224d9fec
+220	4545	7699959350438102	CMakeFiles/VideoCardControl.dir/cardlogger.cpp.obj	46ca26d2d518547d
+191	4997	7699959354967173	CMakeFiles/VideoCardControl.dir/main.cpp.obj	3848290ee294131a
+180	5034	7699959355452843	CMakeFiles/VideoCardControl.dir/mainwindow.cpp.obj	32db32267b181351
+186	5104	7699959356184361	CMakeFiles/VideoCardControl.dir/cardinfo.cpp.obj	f781d9ad19d5b310
+174	5180	7699959356967021	CMakeFiles/VideoCardControl.dir/VideoCardControl_autogen/mocs_compilation.cpp.obj	efa04e2cf345f733
+215	5458	7699959359707839	CMakeFiles/VideoCardControl.dir/linkingwindow.cpp.obj	19ffb6618dfffb8e
+209	5904	7699959364164962	CMakeFiles/VideoCardControl.dir/cardmode.cpp.obj	c7dabb035c302710
+3447	6481	7699959369981670	CMakeFiles/VideoCardControl.dir/profilemanager.cpp.obj	e4192e47158d2b22
+6481	6713	7699959372226667	VideoCardControl.exe	b610cd751eb334c7
+6	152	7686719994590166	VideoCardControl_autogen/timestamp	2036fb3be51c1675
+6	152	7686719994590166	VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
+6	152	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/timestamp	2036fb3be51c1675
+6	152	7686719994590166	C:/Users/Артем/Desktop/СПЗ (Курсова)/VideoCardControl/build/Desktop_x86_windows_msvc2019_pe_64bit-Release/VideoCardControl_autogen/mocs_compilation.cpp	2036fb3be51c1675
+188	3933	7699959564636324	CMakeFiles/VideoCardControl.dir/databasecollector.cpp.obj	8488bf230eb12ad4
+173	4205	7699959567518012	CMakeFiles/VideoCardControl.dir/videocardcollector.cpp.obj	38351241df55c7e
+195	4705	7699959572313362	CMakeFiles/VideoCardControl.dir/profilemanager.cpp.obj	e4192e47158d2b22
+180	5095	7699959576425545	CMakeFiles/VideoCardControl.dir/graphwindow.cpp.obj	14210952224d9fec
+184	5107	7699959576575512	CMakeFiles/VideoCardControl.dir/cardlogger.cpp.obj	46ca26d2d518547d
+167	5338	7699959578700886	CMakeFiles/VideoCardControl.dir/cardinfo.cpp.obj	f781d9ad19d5b310
+170	5438	7699959580036231	CMakeFiles/VideoCardControl.dir/mainwindow.cpp.obj	32db32267b181351
+163	5488	7699959580556748	CMakeFiles/VideoCardControl.dir/main.cpp.obj	3848290ee294131a
+191	5973	7699959585370065	CMakeFiles/VideoCardControl.dir/linkingwindow.cpp.obj	19ffb6618dfffb8e
+176	6397	7699959589612669	CMakeFiles/VideoCardControl.dir/cardmode.cpp.obj	c7dabb035c302710
+3933	6992	7699959595619403	CMakeFiles/VideoCardControl.dir/VideoCardControl_autogen/mocs_compilation.cpp.obj	efa04e2cf345f733
+6992	7124	7699959596868702	VideoCardControl.exe	b610cd751eb334c7

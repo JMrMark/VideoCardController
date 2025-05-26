@@ -600,6 +600,46 @@ void CardMode::on_profile_button_clicked()
     }
     qDebug() << "Обрано профіль: " << profileName;
     QVector<QString> result = Profile_GetConnectedApp();
+
+    QString greenStyle = R"(
+        QGroupBox {
+            border: 1px solid #666;
+            border-radius: 6px;
+            margin-top: 6px;
+            padding: 6px;
+        }
+
+        QGroupBox::title {
+            subcontrol-origin: margin;
+            subcontrol-position: top left;
+            padding: 0 6px;
+            color: #cccccc;
+            background-color: #2b2b2b;
+        }
+    )";
+
+    QString goodstyle = R"(
+        /* QPushButton — кнопки виразні */
+        QPushButton {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-weight: bold;
+        }
+
+        QPushButton:hover {
+            background-color: #5aa0f0;
+        }
+
+        QPushButton:pressed {
+            background-color: #3f7ecb;
+        }
+    )";
+
+    ui->groupBox_3->setStyleSheet(greenStyle);
+    ui->profile_button->setStyleSheet(goodstyle);
 }
 
 
@@ -671,5 +711,49 @@ void CardMode::on_pushButton_3_clicked()
         profileManager[gpuIndex]->raise();
         profileManager[gpuIndex]->activateWindow();
     }
+}
+
+
+void CardMode::on_profile_box_currentIndexChanged(int index)
+{
+    QString redStyle = R"(
+        QGroupBox {
+            border: 1px solid #a63a3a;
+            border-radius: 6px;
+            margin-top: 6px;
+            padding: 6px;
+        }
+
+        QGroupBox::title {
+            subcontrol-origin: margin;
+            subcontrol-position: top left;
+            padding: 0 6px;
+            color: #cccccc;
+            background-color: #2b2b2b;
+        }
+    )";
+
+    QString goodstyle = R"(
+        /* QPushButton — кнопки виразні */
+        QPushButton {
+            background-color: #f7e739;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-weight: bold;
+        }
+
+        QPushButton:hover {
+            background-color: #b5a712;
+        }
+
+        QPushButton:pressed {
+            background-color: #968e38;
+        }
+    )";
+
+    ui->groupBox_3->setStyleSheet(redStyle);
+    ui->profile_button->setStyleSheet(goodstyle);
 }
 
