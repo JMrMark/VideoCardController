@@ -568,6 +568,8 @@ VideoCardControl_autogen/timestamp: \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/external/nvapi/source/NvApiDriverSettings.c \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/graphwindow.cpp \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/graphwindow.h \
+	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/interfacehelper.cpp \
+	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/interfacehelper.h \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/linkingwindow.cpp \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/linkingwindow.h \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/main.cpp \
@@ -581,6 +583,7 @@ VideoCardControl_autogen/timestamp: \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/cardlogger.ui \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/cardmode.ui \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/graphwindow.ui \
+	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/interfacehelper.ui \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/linkingwindow.ui \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/mainwindow.ui \
 	C:/Users/Артем/Desktop/СПЗ\ (Курсова)/VideoCardControl/profilemanager.ui \

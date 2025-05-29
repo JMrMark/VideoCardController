@@ -15,6 +15,7 @@ DataBaseCollector::DataBaseCollector() {
     // Викликаємо функцію створення таблиці, якщо вона ще не існує
     createTableProfile();
     createTableApplication();
+    createTableInformation();
 }
 
 DataBaseCollector::~DataBaseCollector() {
@@ -50,6 +51,61 @@ void DataBaseCollector::createTableApplication(){
         qDebug() << "[DB] Помилка створення таблиці ApplicationBD:" << query.lastError().text();
     } else {
         qDebug() << "[DB] Таблиця ApplicationBD успішно створена!";
+    }
+}
+
+void DataBaseCollector::createTableInformation(){
+    QSqlQuery query;
+
+    QString createTableQuery =
+        "CREATE TABLE IF NOT EXISTS InfoBD ("
+        "NameS TEXT(16),"
+        "InfoS TEXT(1024));";
+
+    if (!query.exec(createTableQuery)) {
+        qDebug() << "[DB] Помилка створення таблиці InfoBD:" << query.lastError().text();
+    } else {
+        qDebug() << "[DB] Таблиця InfoBD успішно створена!";
+    }
+}
+
+bool DataBaseCollector::saveInformationData(const QString &name, const QString &information){
+    if (name.isEmpty() || information.isEmpty()) {
+        qDebug() << "⚠️ Помилка: порожнє ім'я!";
+        return false;
+    }
+
+    QSqlQuery query;
+
+    // Спочатку перевіряємо, чи вже існує запис
+    query.prepare("SELECT COUNT(*) FROM InfoBD WHERE NameS = :profileName AND InfoS = :application");
+    query.bindValue(":profileName", name);
+    query.bindValue(":application", information);
+
+    if (!query.exec()) {
+        qDebug() << "❌ Помилка перевірки існування запису:" << query.lastError().text();
+        return false;
+    }
+
+    query.next();
+    int recordCount = query.value(0).toInt();
+
+    if (recordCount > 0) {
+        qDebug() << "✅ Запис вже існує, оновлення не потрібно.";
+        return true; // Запис уже є, нічого змінювати не потрібно
+    } else {
+        // Додаємо новий запис
+        query.prepare("INSERT INTO InfoBD (NameS, InfoS) VALUES (:profileName, :application)");
+        query.bindValue(":profileName", name);
+        query.bindValue(":application", information);
+
+        if (!query.exec()) {
+            qDebug() << "❌ Помилка додавання запису:" << query.lastError().text();
+            return false;
+        }
+
+        qDebug() << "✅ Додано новий запис: [" << name << "] ->" << information;
+        return true;
     }
 }
 
@@ -91,6 +147,25 @@ bool DataBaseCollector::saveApplicationData(const QString &profileName, const QS
         qDebug() << "✅ Додано новий запис: [" << profileName << "] ->" << application;
         return true;
     }
+}
+
+QString DataBaseCollector::loadInformationData(const QString &name){
+    QString result;
+    QSqlQuery query;
+    query.prepare("SELECT InfoS FROM InfoBD WHERE nameS = :profileName");
+    query.bindValue(":profileName", name);
+
+    if (!query.exec()) {
+        qDebug() << "❌ Помилка завантаження інформації" << name << ":" << query.lastError().text();
+        return result; // Повертаємо порожній вектор у разі помилки
+    }
+
+    while (query.next()) {
+        result = query.value(0).toString(); // Додаємо назву програми у вектор
+    }
+
+    qDebug() << "✅ Повертаємо запит" << name << ":" << result;
+    return result;
 }
 
 QVector<QString> DataBaseCollector::loadApplicationData(const QString &profileName){

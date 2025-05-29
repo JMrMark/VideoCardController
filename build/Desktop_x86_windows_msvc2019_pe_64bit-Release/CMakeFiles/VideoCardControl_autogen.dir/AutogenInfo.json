@@ -410,6 +410,12 @@
 			null
 		],
 		[
+			"C:/Users/\u0410\u0440\u0442\u0435\u043c/Desktop/\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)/VideoCardControl/interfacehelper.h",
+			"MU",
+			"EWIEGA46WW/moc_interfacehelper.cpp",
+			null
+		],
+		[
 			"C:/Users/\u0410\u0440\u0442\u0435\u043c/Desktop/\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)/VideoCardControl/linkingwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_linkingwindow.cpp",
@@ -526,6 +532,11 @@
 		],
 		[
 			"C:/Users/\u0410\u0440\u0442\u0435\u043c/Desktop/\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)/VideoCardControl/graphwindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/\u0410\u0440\u0442\u0435\u043c/Desktop/\u0421\u041f\u0417 (\u041a\u0443\u0440\u0441\u043e\u0432\u0430)/VideoCardControl/interfacehelper.cpp",
 			"MU",
 			null
 		],

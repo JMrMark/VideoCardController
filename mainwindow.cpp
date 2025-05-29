@@ -1,3 +1,4 @@
+#include <QMessageBox>
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "cardinfo.h"
@@ -69,5 +70,35 @@ void MainWindow::on_monitorCard_b_clicked()
             loggerWindow = nullptr;
         });
     }
+}
+
+// Детальніше про автора
+void MainWindow::on_pushButton_2_clicked()
+{
+    QMessageBox::information(this, "Інформація", "Автор: Чесановський Артем\nГрупа: КІ-306 \nДата розробки: 27.05.2025");
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    if (!interfaceHelper) {
+        interfaceHelper = new InterfaceHelper();
+        interfaceHelper->setAttribute(Qt::WA_DeleteOnClose);
+
+        connect(interfaceHelper, &InterfaceHelper::destroyed, this, [=]() {
+            interfaceHelper = nullptr;
+        });
+
+        interfaceHelper->show();
+    } else {
+        interfaceHelper->raise();
+        interfaceHelper->activateWindow();
+    }
+}
+
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    qApp->quit();
 }
 

@@ -31,6 +31,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         databasecollector.h databasecollector.cpp
         linkingwindow.h linkingwindow.cpp linkingwindow.ui
         profilemanager.h profilemanager.cpp profilemanager.ui
+        interfacehelper.h interfacehelper.cpp interfacehelper.ui
+
 
 
 

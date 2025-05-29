@@ -22,6 +22,8 @@ cardinfo::cardinfo(QWidget *parent)
         ShowMainDataFromVideoCard(CurrentVideoCard);
         ShowCurrentDataFromVideoCard(CurrentVideoCard);
     }
+    ui->InfoCard2_b->hide();
+    ui->InfoCard3_b->hide();
 }
 
 cardinfo::~cardinfo()
