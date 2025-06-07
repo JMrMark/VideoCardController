@@ -19,10 +19,16 @@ set(PROJECT_SOURCES
         mainwindow.ui
 )
 
+# Додаємо .rc файл з іконкою тільки на Windows
+if(WIN32)
+    set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/app_manifest.rc")
+endif()
+
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(VideoCardControl
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        ${APP_ICON_RESOURCE_WINDOWS}
         cardinfo.h cardinfo.cpp cardinfo.ui
         videocardcollector.h videocardcollector.cpp
         graphwindow.h graphwindow.cpp graphwindow.ui
@@ -68,7 +74,7 @@ target_include_directories(VideoCardControl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/
 target_sources(VideoCardControl PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/external/nvapi/source/NvApiDriverSettings.c
 )
-target_sources(VideoCardControl PRIVATE app_manifest.rc)
+#target_sources(VideoCardControl PRIVATE app_manifest.rc)
 
 target_link_libraries(VideoCardControl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/external/nvapi/libs/nvapi64.lib)
 # -- HERE

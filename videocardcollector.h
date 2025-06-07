@@ -45,7 +45,6 @@ public:
     // Оновлення змінної tempCard(int) -- Швидкий спосіб
     bool UpdateCurrentTempCard(int NumberOfAskedVideoCard, QProcess &process);
 
-
     // Передаємо вектор Data зта записуємо в нього по три значення:
     //  * PID
     //  * name
@@ -62,12 +61,12 @@ public:
     // MIN = 0, MAX = 3
     int CounterOfVideoCards; // Кількість відеокард на пристрої
 
-    QString modelCard; // Модель відеокарти (+)
-    int loadCard; // Завантаженість відеокарти (+)
-    int tempCard; // Температура відеокарти (+)
-    int capacityCard; // Об'єм відеопам'яті (+)
-    int capacityUsedCard; // Об'єм використаної відеопам'яті (++)
-    QString driverVersion; // Версія драйвера (+)
+    QString modelCard; // Модель відеокарти
+    int loadCard; // Завантаженість відеокарти
+    int tempCard; // Температура відеокарти
+    int capacityCard; // Об'єм відеопам'яті
+    int capacityUsedCard; // Об'єм використаної відеопам'яті
+    QString driverVersion; // Версія драйвера
 };
 
 #endif // VIDEOCARDCOLLECTOR_H

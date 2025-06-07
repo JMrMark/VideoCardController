@@ -21,11 +21,11 @@ MainWindow::~MainWindow()
 void MainWindow::on_infoCard_b_clicked()
 {
     if (infoWindow && !infoWindow->isHidden()) {
-        infoWindow->raise();   // Піднімає вікно поверх інших
-        infoWindow->activateWindow(); // Робить його активним
+        infoWindow->raise();
+        infoWindow->activateWindow();
     } else {
-        infoWindow = new cardinfo(this); // Створюємо вікно, якщо його ще немає
-        infoWindow->setAttribute(Qt::WA_DeleteOnClose); // Автоматично видаляється при закритті
+        infoWindow = new cardinfo(this);
+        infoWindow->setAttribute(Qt::WA_DeleteOnClose);
         infoWindow->show();
 
         // При закритті обнуляємо вказівник
