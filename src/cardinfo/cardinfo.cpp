@@ -3,6 +3,7 @@
 #include "graphwindow.h"
 #include <QProcess>
 #include <QDebug>
+#include <QMessageBox>
 
 cardinfo::cardinfo(QWidget *parent)
     : QMainWindow(parent)
@@ -21,6 +22,10 @@ cardinfo::cardinfo(QWidget *parent)
         PaintCurrentlySelectedButton();
         ShowMainDataFromVideoCard(CurrentVideoCard);
         ShowCurrentDataFromVideoCard(CurrentVideoCard);
+    }
+    else {
+        QMessageBox::critical(this, "Помилка", "⚠️ Відеокарти не було знайдено!");
+        this->close();
     }
     ui->InfoCard2_b->hide();
     ui->InfoCard3_b->hide();
@@ -315,6 +320,8 @@ bool cardinfo::ShowIntegratedGraphicsCard(){
     }
     else {
         qDebug() << "Error with getting data form integrated graphics card";
+        QMessageBox::critical(this, "Помилка", "⚠️ Виникла помилка");
+        this->close();
     }
     return true;
 }

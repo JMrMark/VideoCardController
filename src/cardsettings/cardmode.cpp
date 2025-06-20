@@ -18,19 +18,20 @@ CardMode::CardMode(QWidget *parent)
     if(StartSessionAndProfile()){
         if (!Profile_Create())
         {
-            qDebug() << "[ERROR] Profile is not active!";
+            QMessageBox::critical(this, "Помилка", "⚠️ Виникла помилка");
+            this->close();
         }
         else {
-            if (Profile_Insert_All_Data()){
-                qDebug() << "Success!!!";
-            }
-            else {
-                qDebug() << "[ERROR] Data is not inserted!";
+            if (!Profile_Insert_All_Data()){
+                QMessageBox::critical(this, "Помилка", "⚠️ Виникла помилка");
+                this->close();
             }
         }
     }
     else {
         qDebug() << "[CRITICAL ERROR] NVAPI is not initialized!";
+        QMessageBox::critical(this, "Помилка", "⚠️ Виникла помилка");
+        this->close();
     }
 }
 
@@ -72,6 +73,8 @@ bool CardMode::Profile_Insert_All_Data(){
         !Profile_AddParam(CUDA_ID))
     {
         qDebug() << "Error with adding parameters to profile!";
+        QMessageBox::critical(this, "Помилка", "⚠️ Виникла помилка");
+        this->close();
         return false;
     }
     else {
@@ -346,17 +349,10 @@ bool CardMode::Profile_Update_All_Data(){
 
 bool CardMode::Profile_Check_Vector(){
 
-    if (StandartData.at(0) == -1 ||
-        StandartData.at(1) == -1 ||
-        StandartData.at(2) == -1 ||
-        StandartData.at(3) == -1 ||
-        StandartData.at(4) == -1 ||
-        StandartData.at(5) == -1 ||
-        StandartData.at(6) == -1 ||
-        StandartData.at(7) == -1 ||
-        StandartData.at(8) == -1)
-    {
-        return false;
+    for (int i = 0; i < 9; i++){
+        if (StandartData.at(i) == -1){
+            return false;
+        }
     }
     return true;
 }
