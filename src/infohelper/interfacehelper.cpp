@@ -9,7 +9,7 @@ InterfaceHelper::InterfaceHelper(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("Helper");
 
-    update_AllData(false);
+    update_AllData(true);
 
     ui->label_main->setWordWrap(true);
 
