@@ -2,10 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "cardinfo.h"
-#include "cardmode.h"
-#include "cardlogger.h"
-#include "interfacehelper.h"
+#include "src/cardinfo/cardinfo.h"
+#include "src/cardsettings/cardmode.h"
+#include "src/cardlogger/cardlogger.h"
+#include "src/infohelper/interfacehelper.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

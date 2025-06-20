@@ -1,9 +1,6 @@
 #include <QMessageBox>
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
-#include "cardinfo.h"
-#include "cardmode.h"
-#include "cardlogger.h"
+#include "interface/ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)

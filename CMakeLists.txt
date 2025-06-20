@@ -12,11 +12,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Sql Widgets Charts)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Sql Widgets Charts)
 
+qt_wrap_ui(UI_HEADERS interface/cardinfo.ui)
+
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
         mainwindow.h
-        mainwindow.ui
+        interface/mainwindow.ui
 )
 
 # Додаємо .rc файл з іконкою тільки на Windows
@@ -24,21 +26,45 @@ if(WIN32)
     set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/app_manifest.rc")
 endif()
 
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+if(QT_VERSION_MAJOR GREATER_EQUAL 6)
     qt_add_executable(VideoCardControl
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         ${APP_ICON_RESOURCE_WINDOWS}
-        cardinfo.h cardinfo.cpp cardinfo.ui
-        videocardcollector.h videocardcollector.cpp
-        graphwindow.h graphwindow.cpp graphwindow.ui
-        cardmode.h cardmode.cpp cardmode.ui
-        cardlogger.h cardlogger.cpp cardlogger.ui
-        databasecollector.h databasecollector.cpp
-        linkingwindow.h linkingwindow.cpp linkingwindow.ui
-        profilemanager.h profilemanager.cpp profilemanager.ui
-        interfacehelper.h interfacehelper.cpp interfacehelper.ui
+        src/cardinfo/cardinfo.h
+        src/cardinfo/cardinfo.cpp
+        src/cardinfo/interface/cardinfo.ui
 
+        src/cardinfo/videocardcollector.h
+        src/cardinfo/videocardcollector.cpp
+
+        src/cardinfo/graphwindow.h
+        src/cardinfo/graphwindow.cpp
+        src/cardinfo/interface/graphwindow.ui
+
+        src/cardsettings/cardmode.h
+        src/cardsettings/cardmode.cpp
+        src/cardsettings/interface/cardmode.ui
+
+        src/cardsettings/linkingwindow.h
+        src/cardsettings/linkingwindow.cpp
+        src/cardsettings/interface/linkingwindow.ui
+
+        src/cardsettings/profilemanager.h
+        src/cardsettings/profilemanager.cpp
+        src/cardsettings/interface/profilemanager.ui
+
+        src/cardlogger/cardlogger.h
+        src/cardlogger/cardlogger.cpp
+        src/cardlogger/interface/cardlogger.ui
+
+        src/database/databasecollector.h
+        src/database/databasecollector.cpp
+
+        src/infohelper/interfacehelper.h
+        src/infohelper/interfacehelper.cpp
+        src/infohelper/interface/interfacehelper.ui
+        # Add additional sources here if needed
 
 
 
